@@ -21,6 +21,10 @@ const Layout = () => {
                 <LinkContainer to="/countries">
                   <Nav.Link>Countries</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <h1 className="title">Countries of the world</h1>
               </Nav>
             </Navbar.Collapse>
           </Container>

@@ -7,6 +7,7 @@ import Layout from './pages/Layout';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+
 const App = () => {
   return (
     <BrowserRouter>
