@@ -1,21 +1,46 @@
-# Countries ReactApp 
+# 'Countries of the World' ReactApp 
 
 Project work for React Advanced classes at Helsinki Business College, 2023.
 
 This is a single page app written in JavaScript using React Redux and using the !(REST countries)[https://restcountries.com/] and !(Open Weather Map)[https://openweathermap.org/] APIS.
 
+## Additional libraries and dependencies
+
+Bootstrap with additional custom CSS is used for component styling. 
+An API key is required for data fetching from Open Weather Map. This should be stored in an .env file at the project root, as follows:
+```REACT_APP_OPENWEATHERMAP_API_KEY: <your key>```
+
+The dotenv library is included as a dependency in package.json.
+
+Axios should also be installed for fetches from the weather api.
+
+This project uses RTK Query from redux toolkit for data fetches from the REST countries API. (No additional packages needed.)
+
+### Image Acknowledgements:
+Unsplash Photography:
+Martine Jacobsen
+Alan J. Hendry
+Jakub Dziubak
+Damian Hutter
+K. Mitch Hodge
+Sanjay Hona
+Steven Wei
+David Monaghan
+ Conor Samuel
+ Marek Okon /Ruslan Bardash
+ Ariel Nathan
+ Joshua Oluwagbemiga
+ Sid Verma
+  Shomitro Kumar Ghosh /  Ebadur Rehman Kaium
+  Yura Lytkin 
+  Pedro Lastra /Andrey Grinkevich 
+  Kristaps Grundsteins 
+  Erik Karits
 
 
-Image Acknowledgements:
 
-Photo by <a href="https://unsplash.com/@martijaco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Martine Jacobsen</a> on <a href="https://unsplash.com/photos/wnRvXXzZK7w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-   
-   Photo by <a href="https://unsplash.com/@imedianamibia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alan J. Hendry</a> on <a href="https://unsplash.com/s/photos/namibia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
-   Photo by <a href="https://unsplash.com/@jckbck?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jakub Dziubak</a> on <a href="https://unsplash.com/photos/1m-UJ2fV_zE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
-   Photo by <a href="https://unsplash.com/@thepuzzlers_damian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Damian Hutter</a> on <a href="https://unsplash.com/photos/KWhSooZLl2w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+joaccord
   
-  
-  Photo by <a href="https://unsplash.com/@kmitchhodge?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">K. Mitch Hodge</a> on <a href="https://unsplash.com/photos/BRWYizCeSg0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   

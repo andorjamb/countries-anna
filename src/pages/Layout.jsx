@@ -6,31 +6,36 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import '../customStyles/Layout.css';
+import { Col } from 'react-bootstrap';
+
 const Layout = () => {
   return (
-    <Container fluid>
-      <Row>
-        <Navbar bg="light" variant="light">
+    <Container fluid className="page">
+      <Row className="navbar">
+        <Navbar>
           <Container className="justify-content-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
+
               <Nav>
                 <LinkContainer to="/">
-                  <Nav.Link>Home</Nav.Link>
+                  <Nav.Link className="navlink">Home</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/countries">
-                  <Nav.Link>Countries</Nav.Link>
+                  <Nav.Link className="navlink">Countries</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                  <Nav.Link>Login</Nav.Link>
+                <LinkContainer to="/favourites">
+                  <Nav.Link className="navlink">Favourites</Nav.Link>
                 </LinkContainer>
-                <h1 className="title">Countries of the world</h1>
+                <h1 className="title">Countries of the World</h1>
+
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </Row>
-      <Row>
+      <Row className="main">
         <Outlet />
       </Row>
     </Container>

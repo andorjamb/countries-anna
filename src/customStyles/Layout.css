@@ -1,0 +1,13 @@
+.navbar {
+    background-color: var(--darkred);
+}
+
+.main {
+    background-color: var(--mediumred);
+    height: 90vh;
+}
+
+a.navlink {
+    color: var(--mediumred);
+    font-size: 1.4rem;
+}

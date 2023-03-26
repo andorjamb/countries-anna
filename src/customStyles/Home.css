@@ -1,0 +1,44 @@
+.home-container {
+    padding: 4rem 0;
+
+}
+
+
+.home-carousel {
+    height: 100%;
+    overflow: hidden;
+    height: 220px;
+    width: 360px;
+    border-radius: 60px;
+    box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.9);
+
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+#info {
+    background-color: var(--purple);
+    box-shadow: -10px 10px 40px -20px rgba(35, 35, 35, 0.9), -30px 30px var(--mauve), 1px -1px 2px rgba(220, 180, 240, 0.6);
+    height: 300px;
+    width: 240px;
+    border-radius: 0;
+}
+
+#info:hover {
+    background-color: #9b34f4;
+}
+
+
+.info-container {
+    padding: 0 4rem;
+}
+
+
+
+
+.info-container a {
+    color: var(--limegreen);
+
+}

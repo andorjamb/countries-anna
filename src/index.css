@@ -9,6 +9,7 @@
   --lushgreen: #376D15;
   --peach: #F5DADA;
   --emerald: #418787;
+  --purple2: #a040f5;
 
 }
 
@@ -21,11 +22,16 @@ body {
 }
 
 h1.title {
-  font-family: 'Cardo', serif;
+  font-family: 'PT-Sans', sans-serif;
   text-transform: uppercase;
+  color: var(--peach);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+  color: var(limegreen);
+}
+
+@media (prefers-reduced-motion) {
+  /* styles to apply if the user's settings are set to reduced motion */
 }
