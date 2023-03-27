@@ -3,12 +3,29 @@
 
 }
 
+h1.title {
+    background: linear-gradient(to top, var(--limegreen), var(--purple));
+    font-family: 'PT-Sans', sans-serif;
+    font-size: 1.8rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: relative;
+    top: -100px;
+
+
+}
+
 
 .home-carousel {
     height: 100%;
     overflow: hidden;
-    height: 220px;
-    width: 360px;
+    height: 300px;
+    width: 450px;
     border-radius: 60px;
     box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.9);
 
@@ -37,6 +54,7 @@
 
 .info-container {
     padding: 0 4rem;
+    margin: auto;
 }
 
 
@@ -46,4 +64,13 @@
     color: var(--limegreen);
     font-weight: 800;
 
+}
+
+.sup-div {
+    background-color: var(--limegreen);
+    box-shadow: -30px 30px var(--verdantgreen);
+    height: 60px;
+    width: 400px;
+    position: relative;
+    left: 60vw;
 }

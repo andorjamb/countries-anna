@@ -1,4 +1,4 @@
-import { Carousel, Row, Col, Card } from 'react-bootstrap';
+import { Carousel, Row, Col, Card, Container } from 'react-bootstrap';
 import React from 'react';
 import images from '../assets/images';
 import '../customStyles/Home.css';
@@ -6,9 +6,9 @@ import '../customStyles/Home.css';
 const Home = () => {
 
   return (
-    <div className="home-container">
-      <Row className="justify-content-around">
-        <Col>
+    <Container className="home-container">
+      <Row className="mt-1 ms-5 h-80">
+        <Col sm={12} md={5} lg={5}>
           <div className="info-container">
             <Card className="info">
               <Card.Body>
@@ -21,7 +21,7 @@ const Home = () => {
             </Card>
           </div>
         </Col>
-        <Col>
+        <Col sm={12} md={6} lg={6} className="me-auto">
           <Carousel className='home-carousel' slide="true">
             {images.map((image) => (
               <Carousel.Item className='.carousel-item' key={image.alt}>
@@ -31,14 +31,17 @@ const Home = () => {
             <Carousel.Item className='.carousel-box'></Carousel.Item>
           </Carousel>
         </Col>
+        <Col sm={0} md={1} lg={1} className="h-100"><h1 className="title">Countries of the World</h1></Col>
+
       </Row>
+      <Row><div className="sup-div"></div></Row>
 
 
 
 
 
 
-    </div >
+    </Container >
   );
 };
 

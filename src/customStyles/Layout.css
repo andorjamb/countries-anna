@@ -1,23 +1,36 @@
 .navbar {
+    background: linear-gradient(to right, var(--mediumred3), var(--mediumred2));
 
-    background: linear-gradient(var(--darkred2), var(--purple2));
 }
 
-h1.title {
+/* h1.title {
+    background: linear-gradient(to left, var(--limegreen), var(--purple));
     font-family: 'PT-Sans', sans-serif;
+    font-size: 1.8rem;
+    transform: rotate(90deg);
+    text-align: end;
     text-transform: uppercase;
-    color: var(--peach);
-    font-size: 2rem;
-}
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+
+
+} */
 
 .main {
     background-color: var(--mediumred);
     min-height: 90vh;
+    background: linear-gradient(to right, var(--mediumred3), var(--mediumred2));
 }
 
 a.navlink {
     color: var(--mediumred);
     font-size: 1.4rem;
+}
+
+.nav-link:hover {
+    border: 0 0 2px white;
 }
 
 .btn {
@@ -31,6 +44,10 @@ a.navlink {
 
 .btn:hover {
     background-color: var(--mauve);
+}
+
+.btn:active {
+    background-color: var(--red);
 }
 
 @media screen and (max-width: 480px) {
