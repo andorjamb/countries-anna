@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import Card from 'react-bootstrap/Card';
+//import Card from 'react-bootstrap/Card';
+import Card from './Card.jsx';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -9,19 +11,23 @@ import Row from 'react-bootstrap/Row';
 import { LinkContainer } from 'react-router-bootstrap';
 
 
-const Countries = () => {
+const Countries = ({filterCriteria}) => {
   const [search, setSearch] = useState('');
-  //const base_url = "https://restcountries.com/";
+  const [countries, setCountries] = useState([]);
+
 
   //let countries = rtk query fetch
   console.log("Search: ", search)
 
-  /*   useEffect(() => {
-      const countries = axios.get(`${base_url}all`)
-        .then((res) => console.log(res.data));
-    }, []) */
+useEffect(() => {
+      axios.get("https://restcountries.com/v3.1/all")
+        .then((res) => setCountries(res.data))
+    }, []) 
 
-  const countries = [];
+  //const countries = [];
+
+  useEffect(()=>{  console.log(countries);},[countries])
+
 
   return (
     <Container fluid>
@@ -39,43 +45,21 @@ const Countries = () => {
           </Form>
         </Col>
       </Row>
-      <Row xs={2} md={3} lg={4} className=" g-3">
-        <Col className="mt-5">
+ <Container>   <Row xs={2} md={3} lg={4} className=" g-3">
+        <Col className="mt-5"> 
 
-          {countries.map((country) => (
-            <LinkContainer
-              to={`/countries/${country.name.common}`}
-              state={{ country: country }}
-            >
-              <Card className="h-100">
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title>{'Single Country Common Name'}</Card.Title>
-                  <Card.Subtitle className="mb-5 text-muted">
-                    {'Single Country Official Name'}
-                  </Card.Subtitle>
-                  <ListGroup
-                    variant="flush"
-                    className="flex-grow-1 justify-content-end"
-                  >
-                    <ListGroup.Item>
-                      <i className="bi bi-translate me-2"></i>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <i className="bi bi-cash-coin me-2"></i>
-                    </ListGroup.Item>
-
-                    <ListGroup.Item>
-                      <i className="bi bi-people me-2"></i>
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Card.Body>
-              </Card>
-            </LinkContainer>))
+          {countries.map((country) => (<Card country={country}></Card> 
+           
+                       
+         )  
+               
+            )
 
           }
 
-        </Col>
-      </Row>
+      </Col>
+      </Row> </Container>
+   
     </Container>
   );
 };

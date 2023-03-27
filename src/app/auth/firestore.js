@@ -1,13 +1,3 @@
-import {
-    initializeAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    OAuthCredential, User,
-    signOut, getAuth
-} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -21,14 +11,4 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-/* export const auth = initializeAuth(app); */
-const auth = getAuth();
-
-export {
-    auth,
-    createUserWithEmailAndPassword,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut
-}
 

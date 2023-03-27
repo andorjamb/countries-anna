@@ -1,20 +1,22 @@
 import React from 'react';
 import { setUser } from '../features/userSlice';
 import { useForm } from "react-hook-form";
-import Button from 'react-bootstrap/Button';
+import { Button } from 'bootstrap';
 
 const Login = () => {
 
     const { register, watch, handleSubmit, setValue } = useForm({
         defaultValues: {
-          email: '',
-          password: ''
+          firstName: '',
+          lastName: '',
+          email: ''
         },
     });
     const watchAll = watch();
 
-    const openRegister =()=>{
-        //toggle modal state
+    const openLogin = () => {
+     // change modal state here, swap register for login
+
     }
 
     return (
@@ -33,13 +35,13 @@ const Login = () => {
                     <input type="text" />
                 </div>
                 <div class="form-group">
-                    <label for="lastName">Last name</label>
+                    <label for="lastName">First name</label>
                     <input type="text" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
-            Need to create an account? <Button onClick={openRegister}>Register</Button> or <button>Sign in with Google</button>
+            Already have an account? <Button onClick={openLogin}>Login</Button> or <Button>Sign in with Google</Button>
 
         </div>
     );

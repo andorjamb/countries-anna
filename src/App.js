@@ -4,7 +4,7 @@ import Countries from './components/Countries';
 import CountriesSingle from './components/CountriesSingle';
 import Home from './components/Home';
 import Layout from './pages/Layout';
-import Favourites from './pages/Favourites';
+import Favourites from './components/Favourites';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

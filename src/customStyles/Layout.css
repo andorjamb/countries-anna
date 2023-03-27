@@ -4,7 +4,7 @@
 
 .main {
     background-color: var(--mediumred);
-    height: 90vh;
+    min-height: 90vh;
 }
 
 a.navlink {

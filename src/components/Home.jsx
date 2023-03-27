@@ -22,7 +22,7 @@ const Home = () => {
         <Col>
           <Carousel className='home-carousel' slide="true">
             {images.map((image) => (
-              <Carousel.Item className='.carousel-item'>
+              <Carousel.Item className='.carousel-item' key={image.alt}>
                 <img src={image.file} className="d-block w-100 home-carousel" alt={image.alt} title={image.alt} />
               </Carousel.Item >
             ))}
