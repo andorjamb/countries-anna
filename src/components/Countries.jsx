@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 import CustomCard from './CustomCard.jsx';
 
 const Countries = ({ filterCriteria }) => {
@@ -53,19 +54,12 @@ const Countries = ({ filterCriteria }) => {
       </Row>
 
       <Container>
-        <Row xs={2} md={3} lg={4} className="mt-5">
-
-
+        <Row className="mt-5 h-20 row-h-300" xs={2} md={3} lg={3} >
           {countries.map((country) => (<Col className="md-3">
-            <CustomCard country={country}></CustomCard>  </Col>
-
-
-          )
-
-          )
-
+            <CustomCard country={country} />
+          </Col>
+          ))
           }
-
         </Row>
 
       </Container>

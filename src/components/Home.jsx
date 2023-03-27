@@ -7,10 +7,10 @@ const Home = () => {
 
   return (
     <Container className="home-container">
-      <Row className="mt-1 ms-5 h-80">
+      <Row className="mt-1 ms-5 h-70">
         <Col sm={12} md={5} lg={5}>
           <div className="info-container">
-            <Card className="info">
+            <Card className="info card-h-200">
               <Card.Body>
                 <Card.Title>About</Card.Title>
                 <Card.Text>'Countries' is a simple React application made as an end-of-term assignment at

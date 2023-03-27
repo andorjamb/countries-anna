@@ -21,4 +21,4 @@ This project uses RTK Query from redux toolkit for data fetches from the REST co
 
 Unsplash Photography Credits:
 
-* Martine Jacobsen, Alan J. Hendry,Jakub Dziubak, Damian Hutter, K. Mitch Hodge, Sanjay Hona, Steven Wei, David Monaghan, Conor Samuel, Marek Okon, Ruslan Bardash, Ariel Nathan, Joshua Oluwagbemiga, Sid Verma,  Shomitro Kumar Ghosh, Ebadur Rehman Kaium,  Yura Lytkin,  Pedro Lastra, Andrey Grinkevich, Kristaps Grundsteins, Erik Karits *
+* Martine Jacobsen, Alan J. Hendry, Jakub Dziubak, Damian Hutter, K. Mitch Hodge, Sanjay Hona, Steven Wei, David Monaghan, Conor Samuel, Marek Okon, Ruslan Bardash, Ariel Nathan, Sid Verma,  Shomitro Kumar Ghosh, Ebadur Rehman Kaium,  Yura Lytkin,  Pedro Lastra, Kristaps Grundsteins, Erik Karits, Pam Lim, Edouard Tamba *
