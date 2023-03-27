@@ -4,19 +4,11 @@ import axios from 'axios';
 import '../customStyles/Weather.css';
 
 
-const Weather = ({ cityName }) => {
+const Weather = ({ countryName }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+    console.log(APIKey)
 
     const [weatherData, setWeatherData] = useState([]);
-    /*  const [coords, setCoords] = useState({ lat: 0, lon: 0 }); */
-    /*  const [weatherDate, setWeatherDate] = useState(0) */
-
-    /* TODO: forecast button functionality */
-    /*  const nextDateClickHandler = () => {//show next date's weather
-         console.log('weather arrow clicked');
-         setWeatherDate(weatherDate => weatherDate + 1);
-     } */
-
 
     class WeatherObject {
         constructor(description, iconCode, temp_min, temp_max, date) {
@@ -28,29 +20,12 @@ const Weather = ({ cityName }) => {
         }
     }
 
-    //if coords needed, first convert cityname to coords
-    /*    useEffect(() => {
-           axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},FI&limit=1&appid=${APIKey}`)
-               .then((res) => {
-                   console.log('lat:', res.data.lat, 'lon:', res.data.lon)
-                   setCoords({ lat: res.data.lat, lon: res.data.lon });
-                   console.log('city coords:', res.data.lat, res.data.lon);
-               })
-   ß
-       }, []) */
+    const formatDate = (date) => { return new Date(date * 1000).toDateString() };
 
-    useEffect(() => {
-        const formatDate = (date) => { return new Date(date * 1000).toDateString() };
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${APIKey}`)
-            .then((res) => {
-                setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
-            })
-
-
-            .catch(error => console.log(error));
-    }, []);
-
-
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=${APIKey}`)
+        .then((res) => {
+            setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
+        }).catch(error => console.log(error));
 
     return (<div className="weather" >
         <div>
@@ -63,7 +38,7 @@ const Weather = ({ cityName }) => {
             <p>{weatherData.description}</p>
             <p>{weatherData.temp_min} &#8451; -  {weatherData.temp_max} &#8451;</p>
         </div>
-        <div><button className="nextForecast" /* onClick={nextDateClickHandler} */>chevron_right</button></div>
+
     </div>)
 
 }

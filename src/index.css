@@ -9,7 +9,8 @@
   --lushgreen: #376D15;
   --peach: #F5DADA;
   --emerald: #418787;
-  --purple2: #a040f5;
+  --darkred2:#452158;
+  --purple2: #330e24;
 
 }
 
@@ -21,11 +22,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1.title {
-  font-family: 'PT-Sans', sans-serif;
-  text-transform: uppercase;
-  color: var(--peach);
-}
+
 
 a {
   text-decoration: none;

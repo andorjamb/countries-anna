@@ -7,16 +7,18 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Row>
+      <Row className="justify-content-around">
         <Col>
-          <div className="info-container"><Card id="info">
-            <Card.Body><Card.Title className="justify-content-center">About</Card.Title>
-              <Card.Text>'Countries' is a simple React application made as an end-of-term assignment at
-                Business College Helsinki. The app makes use of
-                <a href="https://restcountries.com/"> REST countries </a> and
-                <a href="https://openweathermap.org/"> Open Weather Map </a> APIs.</Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="info-container">
+            <Card className="info">
+              <Card.Body>
+                <Card.Title>About</Card.Title>
+                <Card.Text>'Countries' is a simple React application made as an end-of-term assignment at
+                  Business College Helsinki. The app makes use of
+                  <a href="https://restcountries.com/"> REST countries </a> and
+                  <a href="https://openweathermap.org/"> Open Weather Map </a> APIs.</Card.Text>
+              </Card.Body>
+            </Card>
           </div>
         </Col>
         <Col>

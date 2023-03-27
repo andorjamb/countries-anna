@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-//import Card from 'react-bootstrap/Card';
-import CustomCard from './CustomCard.jsx';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
-import { LinkContainer } from 'react-router-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import CustomCard from './CustomCard.jsx';
 
-
-const Countries = ({filterCriteria}) => {
+const Countries = ({ filterCriteria }) => {
   const [search, setSearch] = useState('');
   const [countries, setCountries] = useState([]);
+  const [showCountries, setShowCountries] = useState([]);
 
+
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+    let countryFilter = countries.filter((country) =>
+      country.name.common.includes(search.trim().toLowerCase())
+    );
+    this.setState({ displayCities: countryFilter });
+  };
 
   //let countries = rtk query fetch
-  console.log("Search: ", search)
 
-useEffect(() => {
-      axios.get("https://restcountries.com/v3.1/all")
-        .then((res) => setCountries(res.data))
-    }, []) 
+
+  useEffect(() => {
+    axios.get("https://restcountries.com/v3.1/all")
+      .then((res) => setCountries(res.data))
+  }, [])
 
   //const countries = [];
 
-  useEffect(()=>{  console.log(countries);},[countries])
+  useEffect(() => { console.log(countries); }, [countries])
 
 
   return (
@@ -45,22 +51,25 @@ useEffect(() => {
           </Form>
         </Col>
       </Row>
- <Container>   <Row xs={2} md={3} lg={4} className=" g-3">
-        <Col className="mt-5"> 
 
-          {countries.map((country) => (<CustomCard country={country}></CustomCard> 
-           
-                       
-         )  
-               
-            )
+      <Container>
+        <Row xs={2} md={3} lg={4} className="mt-5">
+
+
+          {countries.map((country) => (<Col className="md-3">
+            <CustomCard country={country}></CustomCard>  </Col>
+
+
+          )
+
+          )
 
           }
 
-      </Col>
-      </Row> </Container>
-   
-    </Container>
+        </Row>
+
+      </Container>
+    </Container >
   );
 };
 
