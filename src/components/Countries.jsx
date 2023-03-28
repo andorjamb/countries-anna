@@ -11,19 +11,10 @@ import CustomCard from './CustomCard.jsx';
 const Countries = () => {
   const [search, setSearch] = useState('');
   const [countries, setCountries] = useState([]);
-  const [showCountries, setShowCountries] = useState([]);
 
-
-
-  const searchHandler = (e) => {
-    setSearch(e.target.value);
-    console.log(search);
-    let countryFilter = countries.filter((country) =>
-      country.name.common.includes(search.trim().toLowerCase())
-    );
-    setShowCountries(countryFilter);
-  };
-
+  let countryFilter = countries.filter((country) =>
+    country.name.common.includes(search.trim().toLowerCase())
+  );
 
   useEffect(() => {
     const fetchCountries = () => axios.get("https://restcountries.com/v3.1/all")
@@ -31,14 +22,8 @@ const Countries = () => {
 
     fetchCountries();
 
-
   }, [])
 
-  useEffect(() => {
-
-
-    console.log(countries[0]);
-  }, [countries])
 
 
   return (
@@ -60,7 +45,7 @@ const Countries = () => {
 
       <Container>
         <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
-          {countries.map((country) => (<Col className="md-3 mt-5">
+          {countries.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
             <CustomCard country={country} />
           </Col>
           ))

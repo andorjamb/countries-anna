@@ -11,11 +11,6 @@ const Login = () => {
     const dispatch = useDispatch();
     const loginOpen = useSelector((state) => state.modal.loginOpen);
 
-    useEffect(() => {
-        console.log(loginOpen);
-
-    }, [loginOpen])
-
 
     const closeModal = () => {
         dispatch(showLogin(false))

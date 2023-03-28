@@ -9,8 +9,7 @@ import { setUser } from '../features/userSlice';
 const Login = () => {
     const dispatch = useDispatch();
     const registerOpen = useSelector((state) => state.modal.registerOpen);
-    console.log(registerOpen);
-
+    
     const { register, watch, handleSubmit, setValue } = useForm({
         defaultValues: {
             firstName: '',

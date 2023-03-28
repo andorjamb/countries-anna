@@ -7,42 +7,35 @@ import { addFavourite, removeFavourite } from '../features/userSlice';
 import '../customStyles/CustomCard.css';
 
 
-
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
- /*  const favourites = useSelector(state => state.user.favourites);
-  console.log('favourites:', favourites); */
+  const favourites = useSelector(state => state.favourites);
 
-
-  function countryLink() {
-
+  const ADD = (e) => {
+    dispatch(addFavourite(country.name.common))
+    console.log(country.name.common)
   }
+
+  const REMOVE = () => {
+    dispatch(removeFavourite(country.name.common))
+  }
+
 
   return (
     <>
 
       <Card className="h-100">
-      {/*   {favourites.includes(country.name.common) ? (
-          <i
-            className="bi bi-heart-fill text-danger m-1 p-1"
-            onClick={() =>
-              dispatch(removeFavourite(country.name.common))
-            }
-          ></i>
-        ) : (
-          <i
-            className="bi bi-heart text-danger m-1 p-1"
-            onClick={() =>
-              dispatch(addFavourite(country.name.common))
-            }
-          ></i>
-        )} */}
+
+
+
         <Card.Img variant="top" src={country.flags.svg} alt="flag" className="flags h-50" style={{ objectFit: 'cover' }} />
         <Card.Body>
           <Card.Title>{country.name.common}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{country.name.official}</Card.Subtitle>
+          <i className="bi bi-heart-fill text-danger m-1 p-1" onClick={ADD}></i>
 
+          <i className="bi bi-heart text-danger m-1 p-1" onClick={REMOVE}></i>
           <ListGroup>
 
             <ListGroupItem>Capital: {country.capital}</ListGroupItem>
