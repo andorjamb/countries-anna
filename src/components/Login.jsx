@@ -12,7 +12,6 @@ import googleButton from '../assets/thirdPartyButtons/btn_google_signin_dark_nor
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { showLogin, showRegister } from '../features/modalSlice';
-import { setUser } from '../features/userSlice';
 import { auth } from '../app/auth/firestore';
 
 const Login = () => {
@@ -29,14 +28,6 @@ const Login = () => {
     const closeModal = () => {
         dispatch(showLogin(false))
     }
-    /* 
-        const { register, watch, handleSubmit, setValue } = useForm({
-            defaultValues: {
-                email: '',
-                password: ''
-            },
-        });
-        const watchAll = watch(); */
 
     const openRegister = () => {
         dispatch(showRegister(true));

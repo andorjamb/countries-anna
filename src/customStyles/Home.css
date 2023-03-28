@@ -107,7 +107,7 @@ h1.title {
     }
 
     .carousel-item {
-        
+
         height: 100%;
         object-fit: contain;
     }
@@ -142,6 +142,7 @@ h1.title {
 
     .info.card {
         height: 100%;
+        padding: 0.5rem;
     }
 
 

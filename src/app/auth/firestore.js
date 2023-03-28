@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import {
-    onAuthStateChanged,
     getAuth
 } from 'firebase/auth';
 

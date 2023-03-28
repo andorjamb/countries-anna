@@ -31,7 +31,7 @@ export const userSlice = createSlice({
       email: "",
     },
     isLoggedIn: false,
-    favourites: []//an array of country names? country.common.name
+    favourites: ['Italy', 'Albania']//an array of country names? country.common.name
 
   },
   reducers: {

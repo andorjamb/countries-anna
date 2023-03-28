@@ -18,7 +18,6 @@ const Layout = () => {
 
   const openLogin = () => {
     dispatch(showLogin(true));
-    console.log(loginOpen);
   }
 
   const handleSignOut = () => {
@@ -37,13 +36,9 @@ const Layout = () => {
               <Col>
                 <Nav>
 
-                  {auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
+                  {!auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
                     <Button onClick={handleSignOut}>Sign Out</Button>
                   )}
-
-
-
-
 
                   <LinkContainer to="/">
                     <Nav.Link className="navlink">Home</Nav.Link>

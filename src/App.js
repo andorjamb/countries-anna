@@ -12,20 +12,22 @@ import Favourites from './components/Favourites';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './app/auth/firestore';
-import  ProtectedRoute  from './app/auth/ProtectedRoute'
-import { setLoggedIn } from './features/userSlice';
+import ProtectedRoute from './app/auth/ProtectedRoute'
+import { setLoggedIn, setUser } from './features/userSlice';
 
 
 
 const App = () => {
 
   const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   const [user, loading, error] = useAuthState(auth); //user: The auth.UserCredential if logged in, or null if not
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      dispatch(setLoggedIn(currentUser));
+      dispatch(setLoggedIn(true));
+      //if (currentUser.user) { dispatch(setUser(currentUser.user)) };
 
     });
     return () => {
@@ -43,9 +45,9 @@ const App = () => {
           <Route path="/countries" element={<Countries />} />
           <Route path="/countries/:single" element={<CountriesSingle />} />
 
-          <Route element={<ProtectedRoute user={user} />}>
-            <Route path="/favourites" element={<Favourites />} />
-          </Route>
+          {/*    <Route element={<ProtectedRoute loggedIn={loggedIn} />}> */}
+          <Route path="/favourites" element={<Favourites />} />
+          {/*  </Route> */}
 
         </Route>
       </Routes>
