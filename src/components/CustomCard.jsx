@@ -3,18 +3,13 @@ import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import Button from 'react-bootstrap/Button';
-let languages = [];
+import '../customStyles/CustomCard.css';
+
+
+
 const CustomCard = ({ country }) => {
 
-  //const languages = Object.values(country.languages);
-  //console.log(languages);
-  useEffect(() => {
-    if (country.languages != null) {
-      languages = Object.values(country.languages);
-      console.log(languages);
-    }
 
-  }, [country])
 
 
   function countryLink() {
@@ -23,15 +18,9 @@ const CustomCard = ({ country }) => {
 
   return (
     <>
-      <style type="text/css">
-        {`
-       
-        
-        `}
-      </style>
 
-      <Card className="card-h-100">
-        <Card.Img variant="top" src={country.flags.png} alt="flag" className="img-h-50" />
+      <Card className="h-100">
+        <Card.Img variant="top" src={country.flags.svg} alt="flag" className="flags" style={{ objectFit: 'cover' }} />
         <Card.Body>
           <Card.Title>{country.name.common}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{country.name.official}</Card.Subtitle>
@@ -39,16 +28,14 @@ const CustomCard = ({ country }) => {
           <ListGroup>
 
             <ListGroupItem>Capital: {country.capital}</ListGroupItem>
-            <ListGroupItem>Population: {country.population}</ListGroupItem>
-            <ListGroupItem>Languages:
-              {languages.map((lang) => `${lang}, `)}
+            <ListGroupItem>Population: {country.population.toLocaleString()}</ListGroupItem>
 
-            </ListGroupItem>
           </ListGroup>
 
           {/*     Languages: {Object.values(country.languages).map((lang) => (`${lang}, `))} */}
 
-          <Button variant="link" onClick={countryLink}>See More</Button>
+          <Button variant="link" onClick={countryLink} className="btn btn-outline-primary">See More</Button>
+          <Card.Link href='/' >See More</Card.Link>
         </Card.Body>
 
       </Card >

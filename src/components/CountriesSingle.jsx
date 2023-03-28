@@ -25,6 +25,18 @@ const CountriesSingle = () => {
       )
     } */
 
+  //const languages = Object.values(country.languages);
+  //console.log(languages);
+ /*  useEffect(() => {
+    if (country.languages != null) {
+      languages = Object.values(country.languages);
+      console.log(languages);
+    } */
+
+ // }, [country])
+
+
+
   return (
 
     < Container >

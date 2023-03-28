@@ -3,6 +3,10 @@
 
 }
 
+.btn-outline-primary {
+    color: var(--purple);
+}
+
 /* h1.title {
     background: linear-gradient(to left, var(--limegreen), var(--purple));
     font-family: 'PT-Sans', sans-serif;

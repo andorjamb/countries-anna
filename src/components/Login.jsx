@@ -1,47 +1,61 @@
 import React from 'react';
-import { setUser } from '../features/userSlice';
+import { useDispatch } from 'react-redux';
+
 import { useForm } from "react-hook-form";
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { toggleLogin, toggleRegister } from '../features/modalSlice';
+import { setUser } from '../features/userSlice';
 
 const Login = () => {
+    const dispatch = useDispatch();
 
     const { register, watch, handleSubmit, setValue } = useForm({
         defaultValues: {
-          email: '',
-          password: ''
+            email: '',
+            password: ''
         },
     });
     const watchAll = watch();
 
-    const openRegister =()=>{
-        //toggle modal state
+    const openRegister = () => {
+        dispatch(toggleRegister);
+        dispatch(toggleLogin);
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control" placeholder="Enter email" id="email" />
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" placeholder="Enter password" id="pwd" />
-                </div>
-                <div class="form-group">
-                    <label for="firstName">First name</label>
-                    <input type="text" />
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last name</label>
-                    <input type="text" />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div className="modal show">
+            <Modal.Dialog style={{ display: 'block', position: 'initial' }}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Sign In</Modal.Title>
+                </Modal.Header>
 
-            Need to create an account? <Button onClick={openRegister}>Register</Button> or <button>Sign in with Google</button>
+                <Modal.Body>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label HTMLfor="email">Email address:</label>
+                            <input type="email" className="form-control" placeholder="Enter email" id="email" />
+                        </div>
+                        <div className="form-group">
+                            <label HTMLfor="pwd">Password:</label>
+                            <input type="password" className="form-control" placeholder="Enter password" id="pwd" />
+                        </div>
 
+                        <button type="submit" className="btn btn-primary">Sign In</button>
+                    </form>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    Need to create an account ?
+                    <button onClick={openRegister}>Register</button>
+                    <button>Sign in with Google</button>
+
+                </Modal.Footer>
+            </Modal.Dialog>
         </div>
+
+
+
     );
 };
 

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 console.log(APIKey)
-const weatherAPI = '';
+
 
 export const restCountriesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://restcountries.com/v3.1/' }),
@@ -24,7 +24,8 @@ export const restCountriesApi = createApi({
 export const { useGetAllCountriesQuery } = restCountriesApi;
 
 const initialState = {
-    countriesList: []
+    countriesList: [],
+    weatherData: []
 }
 
 let countryName = ""
