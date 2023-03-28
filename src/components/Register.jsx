@@ -16,7 +16,7 @@ const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    console.log(email, password, firstName)
+    //    console.log(email, password, firstName)
 
     const openLogin = () => {
         dispatch(showLogin(true));

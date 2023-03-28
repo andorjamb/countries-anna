@@ -20,7 +20,9 @@ const CountriesSingle = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const country = location.state.country;
+
   console.log('country from location:', country);
+
   const languages = Object.values(country.languages).join(', ');
   console.log(languages);
   /*  useEffect(() => {
@@ -39,7 +41,8 @@ const CountriesSingle = () => {
 
     < Container >
       <div>Single Country will be here</div>
-      <Weather city={country.capital}></Weather>
+      {country &&
+        <Weather city={country.capital}></Weather>}
     </Container >)
 
     ;

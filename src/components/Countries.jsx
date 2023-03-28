@@ -16,7 +16,9 @@ const Countries = () => {
 
   const countryStore = useSelector((state) => state.countryStore);
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [filteredCountries, setFilteredCountries] = useState(countries);
+  console.log(countries[0])
 
   useEffect(() => {
     let countryFilter = countries.filter((country) =>
@@ -28,16 +30,20 @@ const Countries = () => {
 
 
   useEffect(() => {
-    const fetchCountries = () => axios.get("https://restcountries.com/v3.1/all")
-      .then((response) => response.data).then((data) => setCountries(data));
+    setLoading(true);
+    const fetchCountries = async () => await axios.get("https://restcountries.com/v3.1/all")
+      .then((response) => response.data)
+      .then((data) => setCountries(data))
+      .catch(err => console.log(err.message));
+    setLoading(false);
 
     fetchCountries();
 
   }, [])
 
   useEffect(() => {
-    dispatch(setCountryStore(countries));
-    console.log('local state', countries);
+    dispatch(setCountryStore(...countries));
+
   }, [countries])
 
   useEffect(() => {
@@ -51,6 +57,7 @@ const Countries = () => {
 
   return (
     <Container fluid>
+
       <Row>
         <Col className="mt-5 d-flex justify-content-center">
           <Form>

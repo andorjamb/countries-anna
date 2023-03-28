@@ -12,7 +12,7 @@ export const countriesSlice = createSlice({
     },
     reducers: {
         setSearch: (state, action) => { state.search = action.payload },
-        setCountryStore: (state, action) => (state.countryStore = action.payload)
+        setCountryStore: (state, action) => (state.countryStore = { ...action.payload })
 
     },
 

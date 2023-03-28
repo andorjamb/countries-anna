@@ -2,7 +2,7 @@
 
 Project work for React Advanced classes at Helsinki Business College, 2023.
 
-This is a single page app written in JavaScript using React Redux and the !(REST countries)[https://restcountries.com/] and !(Open Weather Map)[https://openweathermap.org/] APIS.
+This is a single page app written in JavaScript using React Redux and the <a href="https://restcountries.com/">REST countries</a> and <a href="https://openweathermap.org/">Open Weather Map</a> APIS.
 
 ## Additional libraries and dependencies
 
