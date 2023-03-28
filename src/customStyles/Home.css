@@ -14,7 +14,7 @@
 h1.title {
     background: linear-gradient(to top, var(--limegreen), var(--purple));
     font-family: 'PT-Sans', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-transform: uppercase;
@@ -28,9 +28,9 @@ h1.title {
 
 
 .home-carousel {
-    height: 100%;
+
     overflow: hidden;
-    height: 300px;
+    height: 40vh;
     width: 450px;
     border-radius: 60px;
     box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.9);
@@ -44,7 +44,7 @@ h1.title {
 .info {
     background-color: var(--purple);
     box-shadow: -10px 10px 40px -20px rgba(35, 35, 35, 0.9), -30px 30px var(--mauve), 1px -1px 2px rgba(220, 180, 240, 0.6);
-    height: 300px;
+    height: 40vh;
     width: 90%;
     border-radius: 0;
     font-weight: 500;
@@ -54,6 +54,9 @@ h1.title {
 }
 
 
+.info-container {
+    margin: auto;
+}
 
 .info-container a {
     color: var(--limegreen);
@@ -66,9 +69,6 @@ h1.title {
 }
 
 
-.info-container {
-    margin: auto;
-}
 
 
 
@@ -98,13 +98,19 @@ h1.title {
 @media screen and (max-width:520px) {
 
     .home-carousel {
-        height: 100%;
+        width: 90vw;
+        height: auto;
         overflow: hidden;
-        width: auto;
         border-radius: 60px;
         box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.9);
         margin: 2rem auto;
 
+    }
+
+    .carousel-item {
+        
+        height: 100%;
+        object-fit: contain;
     }
 
     h1.title {
@@ -122,10 +128,35 @@ h1.title {
 
     .title-container {
         display: none;
+
     }
 
     .title-container-sm {
         display: flex;
+        height: 10vh;
+    }
+
+    .info-container {
+        margin: auto;
+        height: 400px;
+    }
+
+    .info.card {
+        height: 100%;
+    }
+
+
+    .sup-div {
+        display: flex;
+        background-color: var(--limegreen);
+        box-shadow: -30px 30px var(--verdantgreen);
+        height: 90px;
+        width: 200px;
+        color: white;
+        font-weight: 500;
+        padding: 0.5rem;
+        margin-top: 2rem;
+
     }
 
 }

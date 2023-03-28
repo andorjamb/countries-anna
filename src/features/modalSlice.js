@@ -5,18 +5,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const modalSlice = createSlice({
     name: 'modal',
     initialState: {
-        showLogin: false,
-        showRegister: false
+        loginOpen: false,
+        registerOpen: false
     },
     reducers: {
-        toggleLogin: (state) => { state.showLogin = !state.showLogin },
-        toggleRegister: (state) => { state.showRegister = !state.showRegister }
+        showLogin: (state, action) => { state.loginOpen = action.payload },
+        showRegister: (state, action) => { state.registerOpen = action.payload },
+
     }
 
 
 
 })
 
-export const { toggleLogin, toggleRegister } = modalSlice.actions;
+export const { showLogin, showRegister } = modalSlice.actions;
 
 export default modalSlice.reducer;

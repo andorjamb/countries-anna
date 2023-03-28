@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <Container className="home-container">
-      <Row sm={12} md={0} lg={0} className="title-container-sm"><h1 className="title">Countries of the World</h1></Row>
+      <Row className="title-container-sm h-10"><h1 className="title">Countries of the World</h1></Row>
       <Row className="mt-1 ms-5 h-70">
         <Col sm={12} md={5} lg={5}>
           <div className="info-container">

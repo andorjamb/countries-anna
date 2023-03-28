@@ -11,8 +11,8 @@ import '../customStyles/CustomCard.css';
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
-  const favourites = useSelector(state => state.user.favourites);
-  console.log('favourites:', favourites);
+ /*  const favourites = useSelector(state => state.user.favourites);
+  console.log('favourites:', favourites); */
 
 
   function countryLink() {
@@ -23,7 +23,7 @@ const CustomCard = ({ country }) => {
     <>
 
       <Card className="h-100">
-        {favourites.includes(country.name.common) ? (
+      {/*   {favourites.includes(country.name.common) ? (
           <i
             className="bi bi-heart-fill text-danger m-1 p-1"
             onClick={() =>
@@ -37,7 +37,7 @@ const CustomCard = ({ country }) => {
               dispatch(addFavourite(country.name.common))
             }
           ></i>
-        )}
+        )} */}
         <Card.Img variant="top" src={country.flags.svg} alt="flag" className="flags h-50" style={{ objectFit: 'cover' }} />
         <Card.Body>
           <Card.Title>{country.name.common}</Card.Title>

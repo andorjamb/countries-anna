@@ -10,24 +10,29 @@ import Button from 'react-bootstrap/Button';
 
 import Login from '../components/Login';
 import Register from '../components/Register';
-import { toggleLogin } from '../features/modalSlice';
+import { showLogin } from '../features/modalSlice';
 import '../customStyles/Layout.css';
 
 const Layout = () => {
 
   const dispatch = useDispatch();
-  const showLogin = useSelector((state) => state.modal.showLogin);
-  const showRegister = useSelector((state) => state.modal.showRegister);
+  const loginOpen = useSelector((state) => state.modal.loginOpen);
+  const registerOpen = useSelector((state) => state.modal.registerOpen);
 
 
-  const setModalShow = () => {
-    dispatch(toggleLogin);
-    console.log(toggleLogin)
+  const openLogin = () => {
+    dispatch(showLogin(true));
+    console.log(loginOpen);
   }
+  /* 
+    const closeModal = () => {
+      dispatch(showLogin(false))
+    } */
+  //data-bs-target='#login'
 
   return (
     <Container fluid className="page">
-      <Login show={showLogin} onHide={() => setModalShow()}></Login>
+      <Login></Login>
       <Register></Register>
       <Row className="navbar">
         <Navbar>
@@ -36,7 +41,7 @@ const Layout = () => {
             <Navbar.Collapse id="basic-navbar-nav">
 
               <Nav>
-                <Button onClick={setModalShow}>Sign In</Button>
+                <Button onClick={openLogin} >Sign In</Button>
                 <LinkContainer to="/">
                   <Nav.Link className="navlink">Home</Nav.Link>
                 </LinkContainer>

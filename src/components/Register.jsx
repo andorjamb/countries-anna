@@ -1,13 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { Button, Modal } from 'react-bootstrap';
 
-import { toggleLogin, toggleRegister } from '../features/modalSlice';
+import { showLogin, showRegister } from '../features/modalSlice';
 import { setUser } from '../features/userSlice';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const registerOpen = useSelector((state) => state.modal.registerOpen);
+    console.log(registerOpen);
+
     const { register, watch, handleSubmit, setValue } = useForm({
         defaultValues: {
             firstName: '',
@@ -18,14 +21,18 @@ const Login = () => {
     const watchAll = watch();
 
     const openLogin = () => {
-        dispatch(toggleLogin);
-        dispatch(toggleRegister);
+        dispatch(showLogin(true));
+        dispatch(showRegister(false));
 
+    }
+
+    const closeModal = () => {
+        dispatch(showRegister(false))
     }
 
     return (
         <div className="modal show">
-            <Modal.Dialog style={{ display: 'block', position: 'initial' }}>
+            <Modal show={registerOpen} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Sign In</Modal.Title>
                 </Modal.Header>
@@ -61,7 +68,7 @@ const Login = () => {
                     <Button onClick={openLogin}>Login</Button>
                     <Button>Sign in with Google</Button>
                 </Modal.Footer>
-            </Modal.Dialog>
+            </Modal>
 
         </div>
     );

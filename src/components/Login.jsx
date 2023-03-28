@@ -1,14 +1,25 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from "react-hook-form";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { toggleLogin, toggleRegister } from '../features/modalSlice';
+import { showLogin, showRegister } from '../features/modalSlice';
 import { setUser } from '../features/userSlice';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const loginOpen = useSelector((state) => state.modal.loginOpen);
+
+    useEffect(() => {
+        console.log(loginOpen);
+
+    }, [loginOpen])
+
+
+    const closeModal = () => {
+        dispatch(showLogin(false))
+    }
 
     const { register, watch, handleSubmit, setValue } = useForm({
         defaultValues: {
@@ -19,13 +30,17 @@ const Login = () => {
     const watchAll = watch();
 
     const openRegister = () => {
-        dispatch(toggleRegister);
-        dispatch(toggleLogin);
+        dispatch(showRegister(true));
+        dispatch(showLogin(false));
+
+        //show={show} onHide={handleClose}
     }
 
     return (
         <div className="modal show">
-            <Modal.Dialog style={{ display: 'block', position: 'initial' }}>
+            <Modal show={loginOpen} onHide={closeModal} size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Sign In</Modal.Title>
                 </Modal.Header>
@@ -51,7 +66,7 @@ const Login = () => {
                     <button>Sign in with Google</button>
 
                 </Modal.Footer>
-            </Modal.Dialog>
+            </Modal>
         </div>
 
 

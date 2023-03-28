@@ -10,7 +10,7 @@ export const store = configureStore({
         countries: countriesSlice,
         user: userSlice,
         modal: modalSlice,
-        [restCountriesApi.reducerPath]: restCountriesApi.reducer
+     
     },
 });
 
