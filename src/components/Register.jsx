@@ -32,27 +32,27 @@ const Login = () => {
 
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
-                        <div class="form-group">
-                            <label HTMLFor="email">Email address:</label>
-                            <input type="email" class="form-control" placeholder="Enter email" id="email" />
+                        <div className="form-group">
+                            <label htmlFor="email">Email address:</label>
+                            <input type="email" className="form-control" placeholder="Enter email" id="email" />
                         </div>
-                        <div class="form-group">
-                            <label HTMLFor="pwd">Password:</label>
-                            <input type="password" class="form-control" placeholder="Enter password" id="pwd" />
+                        <div className="form-group">
+                            <label htmlFor="pwd">Password:</label>
+                            <input type="password" className="form-control" placeholder="Enter password" id="pwd" />
                         </div>
-                        <div class="form-group">
-                            <label HTMLFor="checkPwd">Password:</label>
-                            <input type="password" class="form-control" placeholder="Re-enter password" id="checkPwd" />
+                        <div className="form-group">
+                            <label htmlFor="checkPwd">Password:</label>
+                            <input type="password" className="form-control" placeholder="Re-enter password" id="checkPwd" />
                         </div>
-                        <div class="form-group">
-                            <label HTMLFor="firstName" class="form-control" placeholder="Enter First Name" id="firstName">First name</label>
+                        <div className="form-group">
+                            <label htmlFor="firstName" className="form-control" placeholder="Enter First Name" id="firstName">First name</label>
                             <input type="text" />
                         </div>
-                        <div class="form-group">
-                            <label HTMLFor="lastName" class="form-control" placeholder="Enter Last Name" id="lastName">Last name</label>
+                        <div className="form-group">
+                            <label htmlFor="lastName" className="form-control" placeholder="Enter Last Name" id="lastName">Last name</label>
                             <input type="text" />
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </Modal.Body>
 

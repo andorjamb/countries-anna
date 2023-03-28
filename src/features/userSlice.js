@@ -23,24 +23,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState: {
-        user: {
-            firstname: "",
-            lastname: "",
-            email: "",
-        },
-        isLoggedIn: false,
-        favourites: []//an array of country names? country.common.name
-
+  name: 'user',
+  initialState: {
+    user: {
+      firstname: "",
+      lastname: "",
+      email: "",
     },
-    reducers: {
-        setUser: (state, action) => { state.user = action.payload },
-        addToFavourites: (state, action) => {
-            state.favourites = state.favourites = [...state.favourites, action.payload]
-        }
+    isLoggedIn: false,
+    favourites: []//an array of country names? country.common.name
+
+  },
+  reducers: {
+    setUser: (state, action) => { state.user = action.payload },
+    addFavourite: (state, action) => {
+      state.favourites = state.favourites = [...state.favourites, action.payload]
+    },
+    removeFavourite: (state, action) => {
+      state.favourites = state.favourites.filter((favourite) => favourite !== action.payload)
     }
+  }
 })
 
-export const { setUser, addToFavourites } = userSlice.actions;
+export const { setUser, addFavourite, removeFavourite } = userSlice.actions;
 export default userSlice.reducer;

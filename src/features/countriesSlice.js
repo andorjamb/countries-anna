@@ -23,29 +23,27 @@ export const restCountriesApi = createApi({
 
 export const { useGetAllCountriesQuery } = restCountriesApi;
 
-const initialState = {
-    countriesList: [],
-    weatherData: []
-}
-
-let countryName = ""
 
 export const getWeather = createAsyncThunk(
     'countries/weather',
+
     async () => {
+        let countryName = "";
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=${APIKey}`)
         return response.data;
     }
 )
 
-
-
-
 export const countriesSlice = createSlice({
     name: 'countries',
-    initialState,
+    initialState: {
+        search: '',
+        countriesList: [],
+        weatherData: [],
+
+    },
     reducers: {
-        dummyReducer: (state, action) => { state.countries = action.payload }
+        setSearch: (state, action) => { state.search = action.payload },
 
     },
     extraReducers(builder) {
@@ -58,6 +56,6 @@ export const countriesSlice = createSlice({
 
 );
 
-export const { dummyReducer } = countriesSlice.actions;
+export const { setSearch } = countriesSlice.actions;
 
 export default countriesSlice.reducer;

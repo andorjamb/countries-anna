@@ -33,11 +33,11 @@ const Login = () => {
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label HTMLfor="email">Email address:</label>
+                            <label htmlFor="email">Email address:</label>
                             <input type="email" className="form-control" placeholder="Enter email" id="email" />
                         </div>
                         <div className="form-group">
-                            <label HTMLfor="pwd">Password:</label>
+                            <label htmlFor="pwd">Password:</label>
                             <input type="password" className="form-control" placeholder="Enter password" id="pwd" />
                         </div>
 
