@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../customStyles/Weather.css';
 
 
-const Weather = ({ countryName }) => {
+const Weather = ({ city }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
     console.log(APIKey)
 
@@ -22,24 +22,25 @@ const Weather = ({ countryName }) => {
 
     const formatDate = (date) => { return new Date(date * 1000).toDateString() };
 
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${countryName}&units=metric&appid=${APIKey}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then((res) => {
             setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
         }).catch(error => console.log(error));
 
-    return (<div className="weather" >
-        <div>
-            <img src={`http://openweathermap.org/img/wn/${weatherData.iconCode}@2x.png`}
-                alt="weather icon">
-            </img>
-        </div>
-        <div className="weatherElement">
-            <p id="weatherDate">{weatherData.date}</p>
-            <p>{weatherData.description}</p>
-            <p>{weatherData.temp_min} &#8451; -  {weatherData.temp_max} &#8451;</p>
-        </div>
+    return (
+        <div className="weather" >
+            <div>
+                <img src={`http://openweathermap.org/img/wn/${weatherData.iconCode}@2x.png`}
+                    alt="weather icon">
+                </img>
+            </div>
+            <div className="weatherElement">
+                <p id="weatherDate">{weatherData.date}</p>
+                <p>{weatherData.description}</p>
+                <p>{weatherData.temp_min} &#8451; -  {weatherData.temp_max} &#8451;</p>
+            </div>
 
-    </div>)
+        </div>)
 
 }
 

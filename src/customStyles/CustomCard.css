@@ -1,7 +1,10 @@
 .card {
 
     border-radius: 0;
-    box-shadow: -5px 5px var(--purple), -15px 20px var(--mauve);
+    box-shadow: -10px 10px 40px -20px rgba(35, 35, 35, 0.9), -15px 20px var(--mauve);
+    border-left: 6px solid var(--purple);
+    border-bottom: 6px solid var(--purple);
+    border-right: none;
 }
 
 .card img {

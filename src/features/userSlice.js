@@ -36,6 +36,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => { state.user = action.payload },
+    setLoggedIn: (state, action) => { state.loggedIn = action.payload },
     addFavourite: (state, action) => {
       state.favourites = state.favourites = [...state.favourites, action.payload]
     },
@@ -45,5 +46,5 @@ export const userSlice = createSlice({
   }
 })
 
-export const { setUser, addFavourite, removeFavourite } = userSlice.actions;
+export const { setUser, addFavourite, removeFavourite, setLoggedIn } = userSlice.actions;
 export default userSlice.reducer;

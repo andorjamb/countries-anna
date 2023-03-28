@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 console.log(APIKey)
@@ -8,11 +7,12 @@ console.log(APIKey)
 export const countriesSlice = createSlice({
     name: 'countries',
     initialState: {
-        countriesList: [],
+        countryStore: [],
         weatherData: [],
     },
     reducers: {
         setSearch: (state, action) => { state.search = action.payload },
+        setCountryStore: (state, action) => (state.countryStore = action.payload)
 
     },
 
@@ -20,6 +20,6 @@ export const countriesSlice = createSlice({
 
 );
 
-export const { setSearch } = countriesSlice.actions;
+export const { setSearch, setCountryStore } = countriesSlice.actions;
 
 export default countriesSlice.reducer;

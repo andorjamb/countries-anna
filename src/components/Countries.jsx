@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+
 import CustomCard from './CustomCard.jsx';
+import { setCountryStore } from '../features/countriesSlice';
 
 const Countries = () => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState('');
+
+  const countryStore = useSelector((state) => state.countryStore);
   const [countries, setCountries] = useState([]);
 
   let countryFilter = countries.filter((country) =>
@@ -23,6 +27,20 @@ const Countries = () => {
     fetchCountries();
 
   }, [])
+
+  useEffect(() => {
+    dispatch(setCountryStore(countries));
+    console.log('local state', countries);
+
+
+  }, [countries])
+
+  useEffect(() => {
+
+    console.log('store state', countryStore);
+
+
+  }, [countryStore])
 
 
 

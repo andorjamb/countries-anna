@@ -1,39 +1,37 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Weather from './Weather';
 
 const CountriesSingle = () => {
 
-  const countryName = useParams();
-  const [country, setCountry] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  const countryName = Object.values(useParams())[0];  //name only
 
-  const countries = [] //fetch from store with hook
+  console.log(countryName);
+  /*   const [country, setCountry] = useState(undefined);
+    const countries = useSelector((state) => state.countryStore);
+    console.log('in countriesSingle:', countries[0]); */
 
-  /*   useEffect(() => {
-      setIsLoading(true);
-      const country = countries.filter(country => country.common.name.toLowerCase() === countryName.toLowerCase());
-      setCountry(country);
-      setIsLoading(false);
-  
-    }, [countries])
-  
-    if (isLoading) {
-      return (<> Loading </>
-      )
-    } */
+  /* 
+    setCountry(countries.filter(country => country.common.name.toLowerCase() === countryName.toLowerCase())); */
 
-  //const languages = Object.values(country.languages);
-  //console.log(languages);
- /*  useEffect(() => {
-    if (country.languages != null) {
-      languages = Object.values(country.languages);
-      console.log(languages);
-    } */
 
- // }, [country])
+  const location = useLocation();
+  const navigate = useNavigate();
+  const country = location.state.country;
+  console.log('country from location:', country);
+  const languages = Object.values(country.languages).join(', ');
+  console.log(languages);
+  /*  useEffect(() => {
+     if (country.languages != null) {
+       languages = Object.values(country.languages);
+       console.log(languages);
+     } */
+
+  // }, [country])
+  const imageSrc = `https://source.unsplash.com/500x400/?${countryName}`
+
 
 
 
@@ -41,7 +39,7 @@ const CountriesSingle = () => {
 
     < Container >
       <div>Single Country will be here</div>
-      <Weather></Weather>
+      <Weather city={country.capital}></Weather>
     </Container >)
 
     ;

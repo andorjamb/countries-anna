@@ -3,7 +3,6 @@ import React from 'react';
 import images from '../assets/images';
 import '../customStyles/Home.css';
 import gitHubMark from "../assets/thirdPartyButtons/github-mark-white.png"
-import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
