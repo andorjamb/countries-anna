@@ -6,7 +6,6 @@ import '../customStyles/Weather.css';
 
 const Weather = ({ city }) => {
     const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-    console.log(APIKey)
 
     const [weatherData, setWeatherData] = useState([]);
 
@@ -22,10 +21,13 @@ const Weather = ({ city }) => {
 
     const formatDate = (date) => { return new Date(date * 1000).toDateString() };
 
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
-        .then((res) => {
-            setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
-        }).catch(error => console.log(error));
+    useEffect(() => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+            .then((res) => {
+                setWeatherData(new WeatherObject(res.data.weather[0].description, res.data.weather[0].icon, res.data.main.temp_min.toFixed(), res.data.main.temp_max.toFixed(), formatDate(res.data.dt)))
+            }).catch(error => console.log(error));
+    }, [city])
+
 
     return (
         <div className="weather" >

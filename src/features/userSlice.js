@@ -25,17 +25,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    user: {
-      firstname: "",
-      lastname: "",
-      email: "",
-    },
     isLoggedIn: false,
     favourites: ['Italy', 'Albania']//an array of country names? country.common.name
 
   },
   reducers: {
-    setUser: (state, action) => { state.user = action.payload },
     setLoggedIn: (state, action) => { state.loggedIn = action.payload },
     addFavourite: (state, action) => {
       state.favourites = state.favourites = [...state.favourites, action.payload]

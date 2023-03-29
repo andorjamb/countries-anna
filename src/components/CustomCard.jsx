@@ -43,7 +43,7 @@ const CustomCard = ({ country }) => {
 
           </ListGroup>
 
-          <Card.Link href={`/countries/${country.name.common}`}>See More</Card.Link>
+          <Button > <Card.Link style={{ margin: 'auto', padding: '5px' }} href={`/countries/${country.name.common}`}>See More</Card.Link></Button>
         </Card.Body>
 
       </Card >

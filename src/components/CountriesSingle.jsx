@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import Weather from './Weather';
+import '../customStyles/countriesSingle.css'
 
 const CountriesSingle = () => {
 
-  const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+  //const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
 
   const countryName = Object.values(useParams())[0];  //name only
 
-  const { data: countries } = useGetAllCountriesQuery();
-  console.log(countries);
+  const {
+    data: countries = [],
+    isLoading,
+    isFetching,
+    error,
+  } = useGetAllCountriesQuery();;
+  //console.log(countries);
+
 
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
-  const currentCountry = countries?.filter(country => country.name.common === 'Albania')
+  const currentCountry = countries?.filter(country => country.name.common === countryName);
+  console.log(currentCountry.capital);
 
-  console.log(currentCountry);
-  /*  setCountry(currentCountry);   */
+  //console.log(currentCountry);
+
+  const imageSrc = `https://source.unsplash.com/500x400/?${countryName}`
 
   /*   useEffect(() => {
       if (country.languages != null) {
@@ -43,20 +53,30 @@ const CountriesSingle = () => {
      } */
 
   // }, [country])
-  const imageSrc = `https://source.unsplash.com/500x400/?${countryName}`
+
+
 
 
   return (
 
-    < Container >
-      <div>Single Country will be here</div>
 
-      <>
-        <img src={imageSrc} alt={countryName}></img>
-        {/*   <Weather city={country?.capital}></Weather> */}
-      </>
+    <Container> {isLoading || isFetching ? (<>Loading....</>) : (<>
+      <Row>
+        <Col><img className="photo" src={imageSrc} alt={countryName}></img></Col>
+        <Col>
+          <h3>Bridgetown</h3>
+
+        </Col>
+
+      </Row>
 
 
+
+      <Row> <Weather city='Bridgetown'></Weather></Row>
+
+
+
+    </>)}
     </Container >)
 
     ;

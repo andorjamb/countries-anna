@@ -30,7 +30,7 @@ h1.title {
 .home-carousel {
     overflow: hidden;
     height: 40vh;
-    width: 450px;
+    width: auto;
     border-radius: 60px;
     box-shadow: 40px 40px 40px rgba(35, 35, 35, 0.9);
 
@@ -115,7 +115,7 @@ h1.title {
     h1.title {
         background: linear-gradient(to left, var(--limegreen), var(--purple));
         font-family: 'PT-Sans', sans-serif;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         text-transform: uppercase;
         text-orientation: unset;
         writing-mode: unset;
@@ -139,7 +139,7 @@ h1.title {
 
     .info-container {
         margin: auto;
-        height: 400px;
+        height: 50vh;
     }
 
     .info.card {

@@ -13,6 +13,9 @@ import '../customStyles/Layout.css';
 
 const Layout = () => {
 
+  const user = auth.currentUser;
+  console.log(user);
+
   const dispatch = useDispatch();
   const loginOpen = useSelector((state) => state.modal.loginOpen);
 
@@ -28,10 +31,11 @@ const Layout = () => {
     <Container fluid className="page">
       <Login></Login>
       <Register></Register>
-      <Row className="p-2 signInBar">
-        {!auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
-          <Button onClick={handleSignOut}>Sign Out</Button>
-        )}
+      <Row className="p-2 signInBar"><Col>  {!auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
+        <Button onClick={handleSignOut}>Sign Out</Button>
+      )}</Col>
+        <Col className="p-1">{user ? (<p style={{ textAlign: 'center' }} className="lead float-right">Welcome {user.displayName}</p>) : (<></>)}</Col>
+
       </Row>
       <Row className="navbar">
         <Navbar>

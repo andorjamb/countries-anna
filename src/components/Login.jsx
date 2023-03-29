@@ -35,7 +35,13 @@ const Login = () => {
     }
 
     const handleSignIn = () => {
-        signInWithEmailAndPassword(auth, email, password);
+        try {
+            signInWithEmailAndPassword(auth, email, password);
+
+        } catch {
+            alert('Account not found.')
+        }
+        dispatch(showLogin(false));
 
     }
 
@@ -54,9 +60,10 @@ const Login = () => {
                      email: user.email,
                  });
              } */
+            dispatch(showLogin(false));
         } catch (err) {
-            console.error(err);
             alert(err.message);
+            return (<p>Account not Found</p>)
         }
 
     }
@@ -80,7 +87,7 @@ const Login = () => {
                             <label htmlFor="pwd">Password:</label>
                             <input type="password" className="form-control" placeholder="Enter password" id="pwd" onChange={(e) => { setPassword(e.target.value) }} />
                         </div>
-                        <Row className="center p-2"><Button type="submit" className="btn btn-primary">Sign In</Button></Row>
+                        <Row className="center p-2"><Button style={{ margin: 'auto' }} type="submit" className="btn btn-primary">Sign In</Button></Row>
 
                     </form>
                 </Modal.Body>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+
 import { Button, Modal, Row } from 'react-bootstrap';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-//import { addDoc, collection, db } from 'firebase';
+
 
 
 import { showLogin, showRegister } from '../features/modalSlice';
@@ -51,9 +53,12 @@ const Register = () => {
                        email,
                    })
                        .then((res) => console.log(res)); */
+                dispatch(showLogin(false));
+
             } catch (err) {
                 console.error(err);
                 alert(err.message);
+                dispatch(showLogin(false));
             }
         };
     }
