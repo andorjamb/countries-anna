@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 
 import CustomCard from './CustomCard.jsx';
 import { setCountryStore } from '../features/countriesSlice';
@@ -15,43 +16,47 @@ const Countries = () => {
   const [search, setSearch] = useState('');
 
   const countryStore = useSelector((state) => state.countryStore);
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [filteredCountries, setFilteredCountries] = useState(countries);
-  console.log(countries[0])
-
-  useEffect(() => {
-    let countryFilter = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(search.trim().toLowerCase())
-    );
-    setFilteredCountries(countryFilter);
-
-  }, [search])
+  //const [filteredCountries, setFilteredCountries] = useState(countries);
 
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchCountries = async () => await axios.get("https://restcountries.com/v3.1/all")
-      .then((response) => response.data)
-      .then((data) => setCountries(data))
-      .catch(err => console.log(err.message));
-    setLoading(false);
+  const { data } = useGetAllCountriesQuery();
+  console.log(data);
 
-    fetchCountries();
-
-  }, [])
-
-  useEffect(() => {
-    dispatch(setCountryStore(...countries));
-
-  }, [countries])
-
-  useEffect(() => {
-
-    console.log('store state', countryStore);
+  /* 
+    useEffect(() => {
+      let countryFilter = countries.filter((country) =>
+        country.name.common.toLowerCase().includes(search.trim().toLowerCase())
+      );
+      setFilteredCountries(countryFilter);
+  
+    }, [search]) */
 
 
-  }, [countryStore])
+  /*   useEffect(() => {
+      setLoading(true);
+      const fetchCountries = async () => await axios.get("https://restcountries.com/v3.1/all")
+        .then((response) => response.data)
+        .then((data) => setCountries(data))
+        .catch(err => console.log(err.message));
+      setLoading(false);
+  
+      fetchCountries();
+  
+    }, []) */
+
+  /*   useEffect(() => {
+      dispatch(setCountryStore(...countries));
+  
+    }, [countries])
+  
+    useEffect(() => {
+  
+      console.log('store state', countryStore);
+  
+  
+    }, [countryStore]) */
 
 
 
@@ -74,13 +79,13 @@ const Countries = () => {
       </Row>
 
       <Container>
-        <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
-          {filteredCountries.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+        {/*  <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
+          {data.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
             <CustomCard country={country} />
           </Col>
           ))
           }
-        </Row>
+        </Row> */}
 
       </Container>
     </Container >
