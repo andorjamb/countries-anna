@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     GoogleAuthProvider,
-    signInWithRedirect,
+    signInWithPopup,
     signInWithEmailAndPassword,
 
 } from 'firebase/auth';
+//import { db, addDoc, query, collection, where, getDocs } from 'firebase';
 import googleButton from '../assets/thirdPartyButtons/btn_google_signin_dark_normal_web.png';
 
 //import { useForm } from "react-hook-form";
@@ -39,8 +40,28 @@ const Login = () => {
 
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithRedirect(auth, provider);
+    const handleGoogleSignIn = async () => {
+        try {
+            const credential = await signInWithPopup(auth, provider);
+            const user = credential.user;
+
+            /*  const q = query(collection(db, "users"), where("uid", "==", user.uid));
+             const docs = await getDocs(q);
+             if (docs.docs.length === 0) {
+                 await addDoc(collection(db, "users"), {
+                     uid: user.uid,
+                     name: user.displayName,
+                     authProvider: "google",
+                     email: user.email,
+                 });
+             } */
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+
+
+
 
     }
 

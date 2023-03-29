@@ -28,6 +28,11 @@ const Layout = () => {
     <Container fluid className="page">
       <Login></Login>
       <Register></Register>
+      <Row className="p-2 signInBar">
+        {!auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
+          <Button onClick={handleSignOut}>Sign Out</Button>
+        )}
+      </Row>
       <Row className="navbar">
         <Navbar>
           <Container>
@@ -35,10 +40,6 @@ const Layout = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Col>
                 <Nav>
-
-                  {!auth.currentUser ? (<Button onClick={openLogin} >Sign In</Button>) : (
-                    <Button onClick={handleSignOut}>Sign Out</Button>
-                  )}
 
                   <LinkContainer to="/">
                     <Nav.Link className="navlink">Home</Nav.Link>
@@ -56,7 +57,7 @@ const Layout = () => {
           </Container>
         </Navbar>
       </Row>
-      <Row className="main">
+      <Row className="main ps-5 pe-5">
         <Outlet />
       </Row>
 

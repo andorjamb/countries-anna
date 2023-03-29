@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Row } from 'react-bootstrap';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+//import { addDoc, collection, db } from 'firebase';
 
 
 import { showLogin, showRegister } from '../features/modalSlice';
@@ -34,16 +35,27 @@ const Register = () => {
         dispatch(showRegister(false))
     }
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         if (checkPassword !== password) {
             return checkText = (`<p><Passwords do not match./p>`)
         } else {
             checkText = null;
-            createUserWithEmailAndPassword(auth, email, password);
-        }
-
-
+            try {
+                const credential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = credential.user;
+                /*    await addDoc(collection(db, "users"), {
+                       uid: user.uid,
+                       name: `${firstName} ${lastName}`,
+                       authProvider: "local",
+                       email,
+                   })
+                       .then((res) => console.log(res)); */
+            } catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
+        };
     }
 
     return (
@@ -75,8 +87,9 @@ const Register = () => {
                             <label htmlFor="lastName" >Last name</label>
                             <input type="text" className="form-control" placeholder="Enter Last Name" id="lastName" onChange={(e) => { setLastName(e.target.value) }} />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                        {checkText}
+                        <Row>   <button type="submit" className="btn btn-primary">Submit</button>
+                            {checkText}</Row>
+
                     </form>
                 </Modal.Body>
 

@@ -1,63 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 
+import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import CustomCard from './CustomCard.jsx';
-import { setCountryStore } from '../features/countriesSlice';
 
 const Countries = () => {
 
-  const dispatch = useDispatch();
   const [search, setSearch] = useState('');
 
-  const countryStore = useSelector((state) => state.countryStore);
-  // const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(false);
-  //const [filteredCountries, setFilteredCountries] = useState(countries);
 
+  const {
+    data: countries = [],
+    isLoading,
+    isFetching,
+    isError,
+    error,
+  } = useGetAllCountriesQuery();;
 
-  const { data } = useGetAllCountriesQuery();
-  console.log(data);
+  if (isLoading || isFetching) {
+    return <div>loading...</div>;
+  }
 
-  /* 
-    useEffect(() => {
-      let countryFilter = countries.filter((country) =>
-        country.name.common.toLowerCase().includes(search.trim().toLowerCase())
-      );
-      setFilteredCountries(countryFilter);
-  
-    }, [search]) */
+  if (isError) {
+    console.log({ error });
+    return <div>{error.status}</div>;
+  }
 
+  console.log(search);
 
-  /*   useEffect(() => {
-      setLoading(true);
-      const fetchCountries = async () => await axios.get("https://restcountries.com/v3.1/all")
-        .then((response) => response.data)
-        .then((data) => setCountries(data))
-        .catch(err => console.log(err.message));
-      setLoading(false);
-  
-      fetchCountries();
-  
-    }, []) */
+  ///const dispatch = useDispatch()
 
-  /*   useEffect(() => {
-      dispatch(setCountryStore(...countries));
-  
-    }, [countries])
-  
-    useEffect(() => {
-  
-      console.log('store state', countryStore);
-  
-  
-    }, [countryStore]) */
+  function searchHandler(e) {
+    setSearch(e.target.value);
 
+  }
+
+  //useEffect(() => { }, [search])
 
 
   return (
@@ -70,22 +49,29 @@ const Countries = () => {
               style={{ width: '18rem' }}
               type="search"
               className="me-2 "
-              placeholder="Search for countries"
+              placeholder="Search for country by name"
               aria-label="Search"
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={searchHandler}
             />
           </Form>
         </Col>
       </Row>
 
       <Container>
-        {/*  <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
-          {data.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+        <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
+
+          {/*  {countriesList.filter((c) => {
+            return c.name.official
+              .toLowerCase()
+              .includes(search.toLowerCase());
+          }).map((country) */}
+
+          {countries?.filter((item) => { return item.name.common.toLowerCase().includes(search.trim().toLowerCase()) }).map((country) => (<Col key={country.name.common} className="md-3 mt-5">
             <CustomCard country={country} />
           </Col>
           ))
           }
-        </Row> */}
+        </Row>
 
       </Container>
     </Container >

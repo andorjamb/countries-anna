@@ -1,30 +1,41 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+
+import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import Weather from './Weather';
 
 const CountriesSingle = () => {
 
+  const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+
   const countryName = Object.values(useParams())[0];  //name only
 
-  console.log(countryName);
-  /*   const [country, setCountry] = useState(undefined);
-    const countries = useSelector((state) => state.countryStore);
-    console.log('in countriesSingle:', countries[0]); */
+  const { data: countries } = useGetAllCountriesQuery();
+  console.log(countries);
 
-  /* 
-    setCountry(countries.filter(country => country.common.name.toLowerCase() === countryName.toLowerCase())); */
+  const [country, setCountry] = useState(null);
+  const [loading, setLoading] = useState(true);
 
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const country = location.state.country;
+  const currentCountry = countries?.filter(country => country.name.common === 'Albania')
 
-  console.log('country from location:', country);
+  console.log(currentCountry);
+  /*  setCountry(currentCountry);   */
 
-  const languages = Object.values(country.languages).join(', ');
-  console.log(languages);
+  /*   useEffect(() => {
+      if (country.languages != null) {
+        const languages = Object.values(country.languages);
+        console.log(languages);
+      }
+      setLoading(false)
+  
+    }, [country]) */
+
+  /*   const languages = Object.values(currentCountry.languages).join(', ');
+    console.log(languages); */
+
   /*  useEffect(() => {
      if (country.languages != null) {
        languages = Object.values(country.languages);
@@ -35,14 +46,17 @@ const CountriesSingle = () => {
   const imageSrc = `https://source.unsplash.com/500x400/?${countryName}`
 
 
-
-
   return (
 
     < Container >
       <div>Single Country will be here</div>
-      {country &&
-        <Weather city={country.capital}></Weather>}
+
+      <>
+        <img src={imageSrc} alt={countryName}></img>
+        {/*   <Weather city={country?.capital}></Weather> */}
+      </>
+
+
     </Container >)
 
     ;

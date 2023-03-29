@@ -3,24 +3,13 @@
 
 }
 
+.signInBar {
+    background-color: #8A4CEEAA;
+}
+
 .btn-outline-primary {
     color: var(--purple);
 }
-
-/* h1.title {
-    background: linear-gradient(to left, var(--limegreen), var(--purple));
-    font-family: 'PT-Sans', sans-serif;
-    font-size: 1.8rem;
-    transform: rotate(90deg);
-    text-align: end;
-    text-transform: uppercase;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-
-
-} */
 
 .main {
     background-color: var(--mediumred);
@@ -29,13 +18,11 @@
 }
 
 a.navlink {
-    color: var(--mediumred);
+    color: white;
     font-size: 1.4rem;
 }
 
-.nav-link:hover {
-    border: 0 0 2px white;
-}
+
 
 .btn {
     background-color: var(--purple);
