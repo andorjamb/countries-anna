@@ -9,9 +9,9 @@ import {
 //import { db, addDoc, query, collection, where, getDocs } from 'firebase';
 import googleButton from '../assets/thirdPartyButtons/btn_google_signin_dark_normal_web.png';
 
-//import { useForm } from "react-hook-form";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
 import { showLogin, showRegister } from '../features/modalSlice';
 import { auth } from '../app/auth/firestore';
 
@@ -22,7 +22,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const provider = new GoogleAuthProvider();
-
 
     const loginOpen = useSelector((state) => state.modal.loginOpen);
 
@@ -60,9 +59,6 @@ const Login = () => {
             alert(err.message);
         }
 
-
-
-
     }
 
     return (
@@ -84,15 +80,15 @@ const Login = () => {
                             <label htmlFor="pwd">Password:</label>
                             <input type="password" className="form-control" placeholder="Enter password" id="pwd" onChange={(e) => { setPassword(e.target.value) }} />
                         </div>
+                        <Row className="center p-2"><Button type="submit" className="btn btn-primary">Sign In</Button></Row>
 
-                        <button type="submit" className="btn btn-primary">Sign In</button>
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer>
                     Need to create an account ?
-                    <button onClick={openRegister}>Register</button>
-                    <button onClick={handleGoogleSignIn}><img src={googleButton} alt="google-button" /></button>
+                    <Button onClick={openRegister}>Register</Button>
+                    <button style={{ border: 'none', background: 'transparent' }} onClick={handleGoogleSignIn}><img src={googleButton} alt="google-button" /></button>
                 </Modal.Footer>
             </Modal>
         </div>

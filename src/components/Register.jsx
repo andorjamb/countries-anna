@@ -62,7 +62,7 @@ const Register = () => {
         <div className="modal show">
             <Modal show={registerOpen} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Sign In</Modal.Title>
+                    <Modal.Title>Register</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -87,16 +87,16 @@ const Register = () => {
                             <label htmlFor="lastName" >Last name</label>
                             <input type="text" className="form-control" placeholder="Enter Last Name" id="lastName" onChange={(e) => { setLastName(e.target.value) }} />
                         </div>
-                        <Row>   <button type="submit" className="btn btn-primary">Submit</button>
+                        <Row className="p-2 center"><Button type="submit" style={{ margin: 'auto' }} className="btn btn-primary">Submit</Button>
                             {checkText}</Row>
 
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    Already have an account?
-                    <Button onClick={openLogin}>Login</Button>
-                    <Button><img src={googleButton} alt="google-button" /></Button>
+                    <p style={{ textAlign: 'center', justifyContent: 'center', margin: 'auto' }}>Already have an account?</p>
+                    <Row><Button onClick={openLogin}>Login</Button><Button style={{ border: 'none', background: 'transparent' }}><img className="pe-5" src={googleButton} alt="google-button" /></Button></Row>
+
                 </Modal.Footer>
             </Modal>
 
