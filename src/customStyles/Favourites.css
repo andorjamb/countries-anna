@@ -1,0 +1,12 @@
+h2 {
+    background: linear-gradient(to right, var(--limegreen), var(--purple));
+    font-family: 'PT-Sans', sans-serif;
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-weight: 800;
+
+}

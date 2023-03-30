@@ -14,8 +14,7 @@ import {
 import CustomCard from './CustomCard';
 import { useGetAllCountriesQuery } from '../features/dataSlice';
 import { auth, db } from '../app/auth/firestore';
-
-
+import '../customStyles/Favourites.css';
 
 const Favourites = () => {
 
@@ -42,14 +41,13 @@ const Favourites = () => {
 
     }, [])
 
-    console.log(favourites);
 
     return (
         <div>
             {isLoading || isFetching || error ? (<div>Still Loading...</div>) : (
                 <Container>
                     <Row>
-                        <h2 style={{ color: 'black' }}>Favourites Countries</h2></Row>
+                        <h2 style={{ color: 'black' }}>Favourite Countries</h2></Row>
                     <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
                         {
 
