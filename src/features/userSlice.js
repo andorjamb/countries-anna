@@ -1,23 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const favourites = localStorage.getItem('Favourites') !== null ? JSON.parse(localStorage.getItem('Favourites')) : []
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
     loggedIn: false,
-    favourites: ['Italy', 'Albania']//an array of country names country.common.name
+    favourites: favourites,
 
   },
   reducers: {
     setLoggedIn: (state, action) => { state.loggedIn = action.payload },
-    addFavourite: (state, action) => {
-      state.favourites = state.favourites = [...state.favourites, action.payload]
+    addFavourite(state, action) {
+      state.favourites = [...state.favourites, action.payload]
+      localStorage.setItem('Favourites', JSON.stringify(state.favourites))
     },
     removeFavourite: (state, action) => {
       state.favourites = state.favourites.filter((favourite) => favourite !== action.payload)
+    },
+    clearFavourites(state, action) {
+      localStorage.removeItem('Favourites')
+      state.favourites = [];
     }
   }
 })
 
-export const { setUser, addFavourite, removeFavourite, setLoggedIn } = userSlice.actions;
+export const { setUser, addFavourite, removeFavourite, setLoggedIn, clearFavourites } = userSlice.actions;
 export default userSlice.reducer;

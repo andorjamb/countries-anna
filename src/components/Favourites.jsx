@@ -18,6 +18,8 @@ import '../customStyles/Favourites.css';
 
 const Favourites = () => {
 
+    const favourites = useSelector(state => state.favourites);
+
     const {
         data: countries = [],
         isLoading,
@@ -25,21 +27,6 @@ const Favourites = () => {
         error,
     } = useGetAllCountriesQuery();;
 
-    const [favourites, setFavourites] = useState();
-
-
-    useEffect(() => {
-        const fetchFavourites = async () => {
-            console.log(auth.currentUser.uid);
-
-            const docSnap = await getDoc(doc(db, 'favourites', auth.currentUser.uid))
-                .then((doc) => setFavourites(doc.data().favourites)
-                );
-
-        }
-        fetchFavourites();
-
-    }, [])
 
 
     return (
