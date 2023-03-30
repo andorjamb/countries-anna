@@ -3,23 +3,13 @@ import { Card, ListGroup, ListGroupItem, Row, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { addFavourite, removeFavourite} from '../features/userSlice';
+import { addFavourite, removeFavourite } from '../features/userSlice';
 import '../customStyles/CustomCard.css';
 
 
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
-
-
-
-
-  const toggleFave = (e) => {
-    dispatch(addFavourite(country.name.common));
-    /*   e.target.classList.remove('bi-heart');
-      e.target.classList.add('bi-heart-fill');*/
-
-  }
 
 
 
@@ -32,11 +22,11 @@ const CustomCard = ({ country }) => {
         <Card.Body>
           <Card.Title>{country.name.common}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{country.name.official}</Card.Subtitle>
-          <i
+          <span className="control"><i
             className="bi bi-heart-fill text-danger m-1 p-1"
             style={{ fontSize: '1.8rem', cursor: 'pointer' }}
             onClick={() => dispatch(addFavourite(country.name.common))}
-          ></i>
+          ></i></span>
 
           <i
             className="bi bi-heart text-danger m-1 p-1"
