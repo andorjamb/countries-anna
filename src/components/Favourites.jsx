@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import CustomCard from './CustomCard';
-import { useGetAllCountriesQuery } from '../features/dataSlice';
-import { db } from '../app/auth/firestore';
+import { Container, Row, Col } from 'react-bootstrap';
 import {
     collection,
     getDocs,
     addDoc,
     updateDoc,
+    getDoc,
     doc,
     deleteDoc,
 } from "@firebase/firestore";
+
+import CustomCard from './CustomCard';
+import { useGetAllCountriesQuery } from '../features/dataSlice';
+import { auth, db } from '../app/auth/firestore';
+
+
 
 const Favourites = () => {
 
@@ -23,39 +25,44 @@ const Favourites = () => {
         isFetching,
         error,
     } = useGetAllCountriesQuery();;
-    //console.log(countries);
+
+    const [favourites, setFavourites] = useState();
 
 
-    //const loggedIn = useSelector(state => state.loggedIn);
-    const favourites = useSelector(state => state.favourites);
-    /*  const favCountries = countries.filter((country) => favourites.includes(country.name.common));
-   console.log(favCountries); */
+    useEffect(() => {
+        const fetchFavourites = async () => {
+            console.log(auth.currentUser.uid);
 
+            const docSnap = await getDoc(doc(db, 'favourites', auth.currentUser.uid))
+                .then((doc) => setFavourites(doc.data().favourites)
+                );
 
+        }
+        fetchFavourites();
+
+    }, [])
+
+    console.log(favourites);
 
     return (
         <div>
+            {isLoading || isFetching || error ? (<div>Still Loading...</div>) : (
+                <Container>
+                    <Row>
+                        <h2 style={{ color: 'black' }}>Favourites Countries</h2></Row>
+                    <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
+                        {
 
-            <Container>
-                <Row>     <h2 style={{ color: 'black' }}>Your favourites are saved here</h2></Row>
-                <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
+                            countries.filter(country => favourites?.includes(country.name.common))
+                                .map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+                                    <CustomCard country={country} />
+                                </Col>
+                                ))
 
-
-                    {
-                        countries.filter(country => favourites.includes(country.name.common))
-                            .map((country) => (<Col key={country.name.common} className="md-3 mt-5">
-                                <CustomCard country={country} />
-                            </Col>
-                            ))
-                    }
-                </Row>
-                <CustomCard />
-
-
-
-            </Container>
-
-
+                        }
+                    </Row>
+                </Container>
+            )}
         </div>
     );
 };

@@ -8,7 +8,8 @@ img.photo {
 }
 
 img.arms {
-    width: 35vw;
+    max-height: 50%;
+    max-width: 35vw;
 
 }
 
@@ -16,10 +17,26 @@ td {
     padding-left: 2rem;
 }
 
-@media screen and (max-width: 520px) {
+.go {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--mediumred2);
+    margin-top: 1rem;
+    margin-left: 3rem;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 590px) {
 
     img.arms,
     img.photo {
-        width: 90vw;
+        max-width: 75vw;
+        min-width: 50vw;
     }
+
+    .arms {
+        margin-top: 2rem;
+        margin: auto;
+    }
+
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import Weather from './Weather';
@@ -10,6 +10,7 @@ import '../customStyles/countriesSingle.css'
 const CountriesSingle = () => {
 
   const countryName = Object.values(useParams())[0];
+  const navigate = useNavigate();
   const arrayZero = [];
 
   const imageSrc = `https://source.unsplash.com/500x400/?${countryName}`
@@ -33,6 +34,9 @@ const CountriesSingle = () => {
   return (
 
     <Container> {isLoading || isFetching ? (<>Loading....</>) : (<>
+      <Row> <Button className="go" onClick={() => { navigate(-1) }}><i
+        className="bi bi-chevron-double-left"></i>Back
+      </Button></Row>
       <Row className="mt-1">
         <Col><img className="photo" src={imageSrc} alt={countryName} title={countryName}></img>
         </Col>
@@ -46,7 +50,7 @@ const CountriesSingle = () => {
             <tr><th>Capital City</th><td>{arrayZero[0].capital}</td></tr>
             <tr><th>Languages</th><td>{Object.values(arrayZero[0].languages).join(', ')}</td></tr>
             <tr><th>Currency</th><td>{Object.values(arrayZero[0].currencies)[0].name}</td></tr>
-            <tr><th>Bordering Countries</th><td>{arrayZero[0]?.borders.join(', ')}</td></tr>
+            <tr><th>Bordering Countries</th><td>{arrayZero[0]?.borders?.join(', ')}</td></tr>
           </tbody>
           </table>
 
@@ -57,7 +61,7 @@ const CountriesSingle = () => {
       <Row className="mt-5"
       ><Col><Weather city={arrayZero[0].capital}></Weather>
         </Col>
-        <Col><img src={arrayZero[0].coatOfArms.svg} alt='coat of arms' className="arms ms-5"></img>
+        <Col><img src={arrayZero[0].coatOfArms.svg} alt='coat of arms' className="arms ms-5 mt-5"></img>
         </Col>
       </Row>
 
