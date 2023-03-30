@@ -1,32 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
-
-/* createUserWithEmailAndPassword(newUser.email, newUser.password)
-      .then((res) => {
-        const user = firebase.auth().currentUser;
-        return user.updateProfile({
-          displayName: newUser.name
-        })
-      }) 
-      
-      
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-.then(function(result) {
-  return result.user.updateProfile({
-    displayName: document.getElementById("name").value
-  })
-}).catch(function(error) {
-  console.log(error);
-});`*/
-
-
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    isLoggedIn: false,
-    favourites: ['Italy', 'Albania']//an array of country names? country.common.name
+    loggedIn: false,
+    favourites: ['Italy', 'Albania']//an array of country names country.common.name
 
   },
   reducers: {

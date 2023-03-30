@@ -26,12 +26,13 @@ const CountriesSingle = () => {
 
 
   countries.forEach((country) => {
-    console.log(country.capital);
     if (country.name.common === countryName) {
       arrayZero.push(country);
-
+      if (arrayZero.length > 0) { return }
     }
   })
+  console.log(arrayZero)
+
 
   //console.log(currentCountry);
 
@@ -64,28 +65,32 @@ const CountriesSingle = () => {
 
 
     <Container> {isLoading || isFetching ? (<>Loading....</>) : (<>
-      <Row>
-        <Col><img className="photo" src={imageSrc} alt={countryName}></img></Col>
-        <Col>
-          <h3>Bridgetown</h3>
+      <Row className="mt-1">
+        <Col><img className="photo" src={imageSrc} alt={countryName} title={countryName}></img>
+        </Col>
+        <Col className="pt-5 ms-2">
+          <h3 style={{ color: 'white' }}>{arrayZero[0].name.common}</h3>
           <table><tbody>
-            <tr><th>Official Name</th><td></td></tr>
-            <tr><th>Region</th><td></td></tr>
-            <tr><th>Languages</th><td></td></tr>
-            <tr><th>Currency</th><td></td></tr>
-            <tr><th>Bordering Countries</th><td></td></tr>
+            <tr><th>Official Name</th><td>{arrayZero[0].name.official}</td></tr>
+            <tr><th>Continent</th><td>{arrayZero[0].continents[0]}</td></tr>
+            <tr><th>Region</th><td>{arrayZero[0].region}</td></tr>
+            <tr><th>Sub-region</th><td>{arrayZero[0].subregion}</td></tr>
+            <tr><th>Languages</th><td>{Object.values(arrayZero[0].languages).join(', ')}</td></tr>
+            <tr><th>Currency</th><td>{Object.values(arrayZero[0].currencies)[0].name}</td></tr>
+            <tr><th>Bordering Countries</th><td>{arrayZero[0]?.borders}</td></tr>
           </tbody>
           </table>
 
         </Col>
-
       </Row>
-
-
-
-      <Row> <Weather city='Bridgetown'></Weather></Row>
-
-
+      <Row>
+      </Row>
+      <Row className="mt-5"
+      ><Col><Weather city='Bridgetown'></Weather>
+        </Col>
+        <Col><img src={arrayZero[0].coatOfArms.svg} alt='coat of arms' className="arms"></img>
+        </Col>
+      </Row>
 
     </>)}
     </Container >)
