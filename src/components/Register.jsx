@@ -41,15 +41,15 @@ const Register = () => {
     )
 
 
-    /*     const createFirebaseDoc = () => {
-            try {
-                console.log(auth.currentUser.uid);
-                //setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`));
-                //{ favourites: arrayUnion("") })
-            } catch (error) {
-                alert(error.message);
-            }
-        } */
+    const createFirebaseDoc = () => {
+        try {
+            console.log(auth.currentUser.uid);
+            setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`), { uid: auth.currentUser.uid });
+            //{ favourites: arrayUnion("") })
+        } catch (error) {
+            alert(error.message);
+        }
+    }
 
     const openLogin = () => {
         dispatch(showLogin(true));
@@ -92,17 +92,13 @@ const Register = () => {
             try {
                 await createUserWithEmailAndPassword(auth, formValues.email, formValues.password)
                     .then((auth) => { return auth.currentUser })
-                // .then((user) => { console.log(user.uid) });
-                console.log(auth.currentUser);
-                console.log(formValues.firstName, formValues.lastName);
                 updateProfile(auth.currentUser, { displayName: `${formValues.firstName} ${formValues.lastName}` });
                 alert('Account successfully created.')
                 dispatch(showRegister(false));
                 console.log(auth.currentUser.displayName);
+                createFirebaseDoc();
             }
-            /*   .then(() => {
-                          // createFirebaseDoc();
-                      }); */
+
             catch (error) {
                 alert(error.message);
                 dispatch(showLogin(false));
@@ -130,7 +126,8 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Enter email"
                                 id="email"
-                                name="email" />
+                                name="email"
+                                defaulValue={formValues.email} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="firstName">First name</label>
@@ -139,7 +136,8 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Enter First Name"
                                 id="firstName"
-                                name="firstName" />
+                                name="firstName"
+                                defaulValue={formValues.firstName} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName" >Last name</label>
@@ -148,7 +146,8 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Enter Last Name"
                                 id="lastName"
-                                name="lastName" />
+                                name="lastName"
+                                defaulValue={formValues.lastName} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="pwd">Password:</label>
