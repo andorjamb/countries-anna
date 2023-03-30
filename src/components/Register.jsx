@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Modal, Row } from 'react-bootstrap';
@@ -13,23 +13,15 @@ import { showLogin, showRegister } from '../features/modalSlice';
 import { auth, db } from '../app/auth/firestore';
 import googleButton from '../assets/thirdPartyButtons/btn_google_signin_dark_normal_web.png';
 
+const value = ['test', 'arg'];
 
 const Register = () => {
 
-    const user = auth.currentUser;
-    console.log(user);
+    // const user = auth.currentUser;
 
     const dispatch = useDispatch();
     const registerOpen = useSelector((state) => state.modal.registerOpen);
     const provider = new GoogleAuthProvider();
-
-    /*    const [email, setEmail] = useState('');
-       const [password, setPassword] = useState('');
-       const [checkPassword, setCheckPassword] = useState('');
-       const [firstName, setFirstName] = useState('');
-       const [lastName, setLastName] = useState(''); */
-
-
     const [formValues, setFormValues] = useState(
         {
             email: '',
@@ -44,8 +36,10 @@ const Register = () => {
     const createFirebaseDoc = () => {
         try {
             console.log(auth.currentUser.uid);
-            setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`), { uid: auth.currentUser.uid });
-            //{ favourites: arrayUnion("") })
+            setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`), {
+                uid: auth.currentUser.uid,
+                favourites: value
+            }, { merge: true });
         } catch (error) {
             alert(error.message);
         }
@@ -65,13 +59,12 @@ const Register = () => {
         try {
             await signInWithPopup(auth, provider)
                 .then(() => {
-                    // createFirebaseDoc();
+                    createFirebaseDoc();
                     dispatch(showLogin(false));
                 })
         }
         catch (err) {
             alert(err.message);
-            return (<p>Account not Found</p>)
         };
     }
 
@@ -106,9 +99,6 @@ const Register = () => {
         };
     }
 
-    useEffect(() => {
-        console.log(formValues)
-    }, [formValues])
 
     return (
         <div className="modal show">

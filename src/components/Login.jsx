@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import { showLogin, showRegister } from '../features/modalSlice';
-import { auth } from '../app/auth/firestore';
+import { auth, db } from '../app/auth/firestore';
 
 const Login = () => {
 
@@ -54,22 +54,10 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             await signInWithPopup(auth, provider);
-
-
-            /*  const q = query(collection(db, "users"), where("uid", "==", user.uid));
-             const docs = await getDocs(q);
-             if (docs.docs.length === 0) {
-                 await addDoc(collection(db, "users"), {
-                     uid: user.uid,
-                     name: user.displayName,
-                     authProvider: "google",
-                     email: user.email,
-                 });
-             } */
+            //TODO: check if doc exists, create if not
             dispatch(showLogin(false));
         } catch (err) {
             alert(err.message);
-            return (<p>Account not Found</p>)
         }
 
     }

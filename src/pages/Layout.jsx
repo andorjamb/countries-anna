@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Col, Button, Row, Nav, Container, Navbar } from 'react-bootstrap';
 import { signOut } from 'firebase/auth';
@@ -14,10 +14,8 @@ import '../customStyles/Layout.css';
 const Layout = () => {
 
   const user = auth.currentUser;
-  console.log(user);
 
   const dispatch = useDispatch();
-  //const loginOpen = useSelector((state) => state.modal.loginOpen);
 
   const openLogin = () => {
     dispatch(showLogin(true));
