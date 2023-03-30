@@ -28,7 +28,6 @@ const CountriesSingle = () => {
       if (arrayZero.length > 0) { return }
     }
   })
-  console.log(arrayZero)
 
 
   return (
@@ -61,7 +60,8 @@ const CountriesSingle = () => {
       <Row className="mt-5"
       ><Col><Weather city={arrayZero[0].capital}></Weather>
         </Col>
-        <Col><img src={arrayZero[0].coatOfArms.svg} alt='coat of arms' className="arms ms-5 mt-5"></img>
+        
+        <Col><img src={arrayZero[0]?.coatOfArms.svg} alt='coat of arms' className="arms ms-5 mt-5"></img>
         </Col>
       </Row>
 

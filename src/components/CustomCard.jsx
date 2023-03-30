@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem, Row, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { addFavourite, removeFavourite } from '../features/userSlice';
+import { addFavourite, removeFavourite} from '../features/userSlice';
 import '../customStyles/CustomCard.css';
 
 
@@ -33,14 +33,15 @@ const CustomCard = ({ country }) => {
           <Card.Title>{country.name.common}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{country.name.official}</Card.Subtitle>
           <i
-            className="no-display bi bi-heart-fill text-danger m-1 p-1"
+            className="bi bi-heart-fill text-danger m-1 p-1"
             style={{ fontSize: '1.8rem', cursor: 'pointer' }}
             onClick={() => dispatch(addFavourite(country.name.common))}
           ></i>
 
           <i
-            className="active bi bi-heart text-danger m-1 p-1"
+            className="bi bi-heart text-danger m-1 p-1"
             style={{ fontSize: '1.8rem', cursor: 'pointer' }}
+            onClick={() => dispatch(removeFavourite(country.name.common))}
           ></i>
           <ListGroup>
             <ListGroupItem>Capital: {country.capital}</ListGroupItem>
