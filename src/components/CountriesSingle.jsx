@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
 
 import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import Weather from './Weather';
@@ -10,9 +9,8 @@ import '../customStyles/countriesSingle.css'
 
 const CountriesSingle = () => {
 
-  //const APIKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-
   const countryName = Object.values(useParams())[0];  //name only
+  const arrayZero = [];
 
   const {
     data: countries = [],
@@ -20,15 +18,20 @@ const CountriesSingle = () => {
     isFetching,
     error,
   } = useGetAllCountriesQuery();;
-  //console.log(countries);
+  console.log(countries);
 
 
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
-  const currentCountry = countries?.filter(country => country.name.common === countryName);
-  console.log(currentCountry.capital);
+  countries.forEach((country) => {
+    console.log(country.capital);
+    if (country.name.common === countryName) {
+      arrayZero.push(country);
+
+    }
+  })
 
   //console.log(currentCountry);
 
@@ -65,6 +68,14 @@ const CountriesSingle = () => {
         <Col><img className="photo" src={imageSrc} alt={countryName}></img></Col>
         <Col>
           <h3>Bridgetown</h3>
+          <table><tbody>
+            <tr><th>Official Name</th><td></td></tr>
+            <tr><th>Region</th><td></td></tr>
+            <tr><th>Languages</th><td></td></tr>
+            <tr><th>Currency</th><td></td></tr>
+            <tr><th>Bordering Countries</th><td></td></tr>
+          </tbody>
+          </table>
 
         </Col>
 
