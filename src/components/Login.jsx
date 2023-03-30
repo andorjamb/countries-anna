@@ -23,6 +23,8 @@ const Login = () => {
 
     const provider = new GoogleAuthProvider();
 
+    const [user, setUser] = useState(); //firebase user uid
+
     const loginOpen = useSelector((state) => state.modal.loginOpen);
 
     const closeModal = () => {
@@ -34,21 +36,25 @@ const Login = () => {
         dispatch(showLogin(false));
     }
 
-    const handleSignIn = () => {
+    const handleSignIn = async () => {
         try {
-            signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password)
+                .then((auth) => setUser(auth.currentUser.uid));
 
         } catch {
             alert('Account not found.')
         }
         dispatch(showLogin(false));
+        console.log('user uid after sigin:', user);
 
     }
 
+
+
     const handleGoogleSignIn = async () => {
         try {
-            const credential = await signInWithPopup(auth, provider);
-            const user = credential.user;
+            await signInWithPopup(auth, provider);
+
 
             /*  const q = query(collection(db, "users"), where("uid", "==", user.uid));
              const docs = await getDocs(q);

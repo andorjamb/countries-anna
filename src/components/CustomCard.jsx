@@ -2,18 +2,34 @@ import React, { useEffect } from 'react';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+  arrayRemove,
+  arrayUnion
+} from "@firebase/firestore";
 
-import { addFavourite, removeFavourite } from '../features/userSlice';
+import { addFavourite, removeFavourite, setLoggedIn } from '../features/userSlice';
 import '../customStyles/CustomCard.css';
+import { db } from '../app/auth/firestore';
+
 
 
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
   const favourites = useSelector(state => state.favourites);
+  const loggedIn = useSelector(state => state.loggedIn);
 
   const ADD = (e) => {
     dispatch(addFavourite(country.name.common))
+    if (loggedIn) {
+
+
+    }
     console.log(country.name.common)
   }
 
@@ -33,7 +49,7 @@ const CustomCard = ({ country }) => {
         <Card.Body>
           <Card.Title>{country.name.common}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{country.name.official}</Card.Subtitle>
-          <i className="bi bi-heart-fill text-danger m-1 p-1" onClick={ADD}></i>
+          <i className="bi bi-heart-fill text-danger m-1 p-1" style={{ fontSize: '1.8rem', cursor: 'pointer' }} onClick={ADD}></i>
 
           <i className="bi bi-heart text-danger m-1 p-1" onClick={REMOVE}></i>
           <ListGroup>

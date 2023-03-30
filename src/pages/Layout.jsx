@@ -17,7 +17,7 @@ const Layout = () => {
   console.log(user);
 
   const dispatch = useDispatch();
-  const loginOpen = useSelector((state) => state.modal.loginOpen);
+  //const loginOpen = useSelector((state) => state.modal.loginOpen);
 
   const openLogin = () => {
     dispatch(showLogin(true));

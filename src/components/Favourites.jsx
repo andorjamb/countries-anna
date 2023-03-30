@@ -5,6 +5,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CustomCard from './CustomCard';
 import { useGetAllCountriesQuery } from '../features/dataSlice';
+import { db } from '../app/auth/firestore';
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    doc,
+    deleteDoc,
+} from "@firebase/firestore";
 
 const Favourites = () => {
 

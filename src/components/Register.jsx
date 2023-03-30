@@ -1,31 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 import { Button, Modal, Row } from 'react-bootstrap';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-
-
+import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+    doc,
+    setDoc,
+    arrayUnion
+} from "@firebase/firestore";
 
 import { showLogin, showRegister } from '../features/modalSlice';
-import { setUser } from '../features/userSlice';
-import { auth } from '../app/auth/firestore';
+import { auth, db } from '../app/auth/firestore';
 import googleButton from '../assets/thirdPartyButtons/btn_google_signin_dark_normal_web.png';
 
 
 const Register = () => {
 
+    const user = auth.currentUser;
+    console.log(user);
+
     const dispatch = useDispatch();
     const registerOpen = useSelector((state) => state.modal.registerOpen);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [checkPassword, setCheckPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const provider = new GoogleAuthProvider();
 
-    let checkText = null;
+    /*    const [email, setEmail] = useState('');
+       const [password, setPassword] = useState('');
+       const [checkPassword, setCheckPassword] = useState('');
+       const [firstName, setFirstName] = useState('');
+       const [lastName, setLastName] = useState(''); */
 
-    //    console.log(email, password, firstName)
+
+    const [formValues, setFormValues] = useState(
+        {
+            email: '',
+            password: '',
+            checkPwd: '',
+            firstName: '',
+            lastName: ''
+        }
+    )
+
+
+    /*     const createFirebaseDoc = () => {
+            try {
+                console.log(auth.currentUser.uid);
+                //setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`));
+                //{ favourites: arrayUnion("") })
+            } catch (error) {
+                alert(error.message);
+            }
+        } */
 
     const openLogin = () => {
         dispatch(showLogin(true));
@@ -37,31 +61,58 @@ const Register = () => {
         dispatch(showRegister(false))
     }
 
+    const handleGoogleSignIn = async () => {
+        try {
+            await signInWithPopup(auth, provider)
+                .then(() => {
+                    // createFirebaseDoc();
+                    dispatch(showLogin(false));
+                })
+        }
+        catch (err) {
+            alert(err.message);
+            return (<p>Account not Found</p>)
+        };
+    }
+
+    const handleChange = (e) => {
+        setFormValues(
+            {
+                ...formValues, [e.target.name]: e.target.value
+            }
+        )
+    }
+
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (checkPassword !== password) {
-            return checkText = (`<p><Passwords do not match./p>`)
-        } else {
-            checkText = null;
-            try {
-                const credential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = credential.user;
-                /*    await addDoc(collection(db, "users"), {
-                       uid: user.uid,
-                       name: `${firstName} ${lastName}`,
-                       authProvider: "local",
-                       email,
-                   })
-                       .then((res) => console.log(res)); */
-                dispatch(showLogin(false));
 
-            } catch (err) {
-                console.error(err);
-                alert(err.message);
+        if (formValues.checkPwd !== formValues.password) {
+            alert('Passwords do not match');
+        } else {
+            try {
+                await createUserWithEmailAndPassword(auth, formValues.email, formValues.password)
+                    .then((auth) => { return auth.currentUser })
+                // .then((user) => { console.log(user.uid) });
+                console.log(auth.currentUser);
+                console.log(formValues.firstName, formValues.lastName);
+                updateProfile(auth.currentUser, { displayName: `${formValues.firstName} ${formValues.lastName}` });
+                alert('Account successfully created.')
+                dispatch(showRegister(false));
+                console.log(auth.currentUser.displayName);
+            }
+            /*   .then(() => {
+                          // createFirebaseDoc();
+                      }); */
+            catch (error) {
+                alert(error.message);
                 dispatch(showLogin(false));
             }
         };
     }
+
+    useEffect(() => {
+        console.log(formValues)
+    }, [formValues])
 
     return (
         <div className="modal show">
@@ -71,36 +122,66 @@ const Register = () => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <form onSubmit={handleRegister}>
+                    <form onChange={handleChange} onSubmit={handleRegister}>
                         <div className="form-group">
                             <label htmlFor="email">Email address:</label>
-                            <input type="email" className="form-control" placeholder="Enter email" id="email" onChange={(e) => { setEmail(e.target.value) }} />
+                            <input
+                                type="email"
+                                className="form-control"
+                                placeholder="Enter email"
+                                id="email"
+                                name="email" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="pwd">Password:</label>
-                            <input type="password" className="form-control" placeholder="Enter password" id="pwd" onChange={(e) => { setPassword(e.target.value) }} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="checkPwd">Password:</label>
-                            <input type="password" className="form-control" placeholder="Re-enter password" id="checkPwd" onChange={(e) => { setCheckPassword(e.target.value) }} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="firstName" >First name</label>
-                            <input type="text" className="form-control" placeholder="Enter First Name" id="firstName" onChange={(e) => { setFirstName(e.target.value) }} />
+                            <label htmlFor="firstName">First name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter First Name"
+                                id="firstName"
+                                name="firstName" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName" >Last name</label>
-                            <input type="text" className="form-control" placeholder="Enter Last Name" id="lastName" onChange={(e) => { setLastName(e.target.value) }} />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter Last Name"
+                                id="lastName"
+                                name="lastName" />
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="pwd">Password:</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                placeholder="Enter password"
+                                id="pwd"
+                                name="password" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="checkPwd">Password:</label>
+                            <input type="password" className="form-control" placeholder="Re-enter password" id="checkPwd" name="checkPwd" />
+                        </div>
+
                         <Row className="p-2 center"><Button type="submit" style={{ margin: 'auto' }} className="btn btn-primary">Submit</Button>
-                            {checkText}</Row>
+                        </Row>
 
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <p style={{ textAlign: 'center', justifyContent: 'center', margin: 'auto' }}>Already have an account?</p>
-                    <Row><Button onClick={openLogin}>Login</Button><Button style={{ border: 'none', background: 'transparent' }}><img className="pe-5" src={googleButton} alt="google-button" /></Button></Row>
+                    <Row>
+                        <Button
+                            onClick={openLogin}>Login
+                        </Button>
+                        <Button
+                            style={{ border: 'none', background: 'transparent' }}
+                            onClick={handleGoogleSignIn}>
+                            <img className="pe-5" src={googleButton} alt="google-button" />
+                        </Button>
+                    </Row>
 
                 </Modal.Footer>
             </Modal>

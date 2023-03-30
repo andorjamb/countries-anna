@@ -36,9 +36,6 @@ const Countries = () => {
 
   }
 
-  //useEffect(() => { }, [search])
-
-
   return (
     <Container fluid>
 
