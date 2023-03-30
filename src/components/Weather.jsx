@@ -36,6 +36,7 @@ const Weather = ({ city }) => {
                     alt="weather icon">
                 </img>
             </div>
+            <div style={{ width: '30%' }}><p>Today's weather in {city}</p></div>
             <div className="weatherElement">
                 <p id="weatherDate">{weatherData.date}</p>
                 <p>{weatherData.description}</p>
