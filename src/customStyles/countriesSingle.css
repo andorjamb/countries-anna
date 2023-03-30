@@ -26,7 +26,7 @@ td {
     cursor: pointer;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 620px) {
 
     img.arms,
     img.photo {

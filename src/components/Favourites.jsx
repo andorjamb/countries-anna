@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Row, Col } from 'react-bootstrap';
-import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    getDoc,
-    doc,
-    deleteDoc,
-} from "@firebase/firestore";
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import CustomCard from './CustomCard';
 import { useGetAllCountriesQuery } from '../features/dataSlice';
-import { auth, db } from '../app/auth/firestore';
+import { clearFavourites } from '../features/userSlice';
 import '../customStyles/Favourites.css';
 
 const Favourites = () => {
+    const dispatch = useDispatch();
+    const favourites = useSelector(state => state.user.favourites);
+    console.log(favourites);
+    console.log(Object.values(favourites).length);
 
     const {
         data: countries = [],
@@ -25,37 +20,47 @@ const Favourites = () => {
         error,
     } = useGetAllCountriesQuery();;
 
-    const [favourites, setFavourites] = useState();
+    let countriesList = countries;
 
-
-    useEffect(() => {
-        const fetchFavourites = async () => {
-            console.log(auth.currentUser.uid);
-
-            const docSnap = await getDoc(doc(db, 'favourites', auth.currentUser.uid))
-                .then((doc) => setFavourites(doc.data().favourites)
-                );
-
-        }
-        fetchFavourites();
-
-    }, [])
+    /*  if (favourites.length) {
+         console.log(countriesList); console.log(countries[1]);
+         // countriesList = countries.filter(c => favourites.includes(c.name.common))
+         countries.forEach((country) => {
+             for (let i = 0; i < favourites.length; i++) {
+                 if (country.name.common === favourites[i]) {
+                     countriesList.push(country);
+ 
+                 }
+             }
+ 
+         })
+         console.log(countriesList);
+     }
+     else {
+         countriesList = [];
+         console.log(countriesList);
+     } */
 
 
     return (
         <div>
             {isLoading || isFetching || error ? (<div>Still Loading...</div>) : (
-                <Container>
-                    <Row>
-                        <h2 style={{ color: 'black' }}>Favourite Countries</h2></Row>
+                <Container fluid>
+                    <Row><h2>Favourite Countries</h2></Row>
+                    <Row><Button onClick={() => dispatch(clearFavourites())}>Clear favourites</Button></Row>
+
                     <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
+
                         {
 
-                            countries.filter(country => favourites?.includes(country.name.common))
-                                .map((country) => (<Col key={country.name.common} className="md-3 mt-5">
-                                    <CustomCard country={country} />
-                                </Col>
-                                ))
+                            /*  countriesList?.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+                                 <CustomCard country={country} />
+                             </Col>)) */
+                            /*  countries.filter(country => favourites?.includes(country.name.common))
+                                 .map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+                                     <CustomCard country={country} />
+                                 </Col>
+                                 )) */
 
                         }
                     </Row>
