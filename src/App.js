@@ -22,7 +22,7 @@ const App = () => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.loggedIn);
 
-  const [user, loading, error] = useAuthState(auth); //user: The auth.UserCredential if logged in, or null if not
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -41,10 +41,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />} />
+          <Route path="/countries" element={<Countries />} />
+          <Route path="/countries/:single" element={<CountriesSingle />} />
           <Route element={<ProtectedRoute user={user} />}>
-            <Route path="/countries" element={<Countries />} />
-            <Route path="/countries/:single" element={<CountriesSingle />} />
-
             <Route path="/favourites" element={<Favourites />} />
           </Route>
 

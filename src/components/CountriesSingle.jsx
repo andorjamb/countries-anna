@@ -18,8 +18,7 @@ const CountriesSingle = () => {
   const {
     data: countries = [],
     isLoading,
-    isFetching,
-    error,
+    isFetching
   } = useGetAllCountriesQuery();;
 
   countries.forEach((country) => {
@@ -60,8 +59,8 @@ const CountriesSingle = () => {
       <Row className="mt-5"
       ><Col><Weather city={arrayZero[0].capital}></Weather>
         </Col>
-        
-        <Col><img src={arrayZero[0]?.coatOfArms.svg} alt='coat of arms' className="arms ms-5 mt-5"></img>
+
+        <Col>   {arrayZero[0]?.coatOfArms.svg ? (<img src={arrayZero[0]?.coatOfArms.svg} alt='coat of arms' className="arms ms-5 mt-5"></img>) : (<></>)}
         </Col>
       </Row>
 

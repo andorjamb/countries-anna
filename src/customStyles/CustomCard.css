@@ -12,6 +12,17 @@
 
 }
 
-.control {
-    color: blue !important;
+.fa-heart {
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--mediumred);
+    margin: 0.4rem;
+}
+
+.fa-solid:hover {
+    transform: scale(1.3);
+}
+
+.fa-solid:active {
+    color: var(--mauve);
 }

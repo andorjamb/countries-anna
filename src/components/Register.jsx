@@ -117,7 +117,7 @@ const Register = () => {
                                 placeholder="Enter email"
                                 id="email"
                                 name="email"
-                                defaulValue={formValues.email} />
+                                defaultValue={formValues.email} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="firstName">First name</label>
@@ -127,7 +127,7 @@ const Register = () => {
                                 placeholder="Enter First Name"
                                 id="firstName"
                                 name="firstName"
-                                defaulValue={formValues.firstName} />
+                                defaultValue={formValues.firstName} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName" >Last name</label>
@@ -137,7 +137,7 @@ const Register = () => {
                                 placeholder="Enter Last Name"
                                 id="lastName"
                                 name="lastName"
-                                defaulValue={formValues.lastName} />
+                                defaultValue={formValues.lastName} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="pwd">Password:</label>

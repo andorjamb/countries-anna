@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ const Favourites = () => {
     const dispatch = useDispatch();
     const favourites = useSelector(state => state.user.favourites);
     console.log(favourites);
-    //console.log(Object.values(favourites).length);
+
 
     const {
         data: countries = [],
@@ -20,29 +20,24 @@ const Favourites = () => {
         error,
     } = useGetAllCountriesQuery();;
 
-    let countriesList = countries;
-    console.log('original', countries[1]);
-    console.log('copy', countriesList[1])
+    let countriesList = [];
 
     if (favourites.length) {
-
-        countriesList = countries.filter(c => favourites.includes(c.name.common))
-    }
-    /*      countries.forEach((country) => {
+        countries.forEach((country) => {
             for (let i = 0; i < favourites.length; i++) {
                 if (country.name.common === favourites[i]) {
                     countriesList.push(country);
- 
+
                 }
             }
- 
+
         })
         console.log(countriesList);
     }
     else {
         countriesList = [];
-        
-    } */
+
+    }
 
 
     return (
