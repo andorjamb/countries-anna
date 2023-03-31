@@ -2,7 +2,8 @@
 
 Project work for React Advanced classes at Helsinki Business College, 2023.
 
-This is a single page app written in JavaScript using React Redux and the <a href="https://restcountries.com/">REST countries</a> and <a href="https://openweathermap.org/">Open Weather Map</a> APIS.
+This is a single page app written in JavaScript using React with Redux-Toolkit and the <a href="https://restcountries.com/">REST countries</a> and <a href="https://openweathermap.org/">Open Weather Map</a> APIS.
+
 
 ## Additional libraries and dependencies
 
@@ -12,10 +13,16 @@ The dotenv library is included as a dependency in package.json for accessing env
 ```REACT_APP_OPENWEATHERMAP_API_KEY: <your key>```
 
 Axios should also be installed for fetches from the weather api.
-xs
+
+
+
+### Project Screenshot
+
+![screenshot](https://github.com/andorjamb/countries-anna/blob/master/screenshot_countries.png)
 
 ### Image Acknowledgements:
 
 Unsplash Photography Credits:
 
 * Martine Jacobsen, Alan J. Hendry, Jakub Dziubak, Damian Hutter, K. Mitch Hodge, Sanjay Hona, Steven Wei, David Monaghan, Conor Samuel, Marek Okon, Ruslan Bardash, Ariel Nathan, Sid Verma,  Shomitro Kumar Ghosh, Ebadur Rehman Kaium,  Yura Lytkin,  Pedro Lastra, Kristaps Grundsteins, Erik Karits, Pam Lim, Edouard Tamba *
+
