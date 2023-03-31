@@ -38,7 +38,7 @@ const Register = () => {
             console.log(auth.currentUser.uid);
             setDoc(doc(db, 'favourites', `${auth.currentUser.uid}`), {
                 uid: auth.currentUser.uid,
-                favourites: value
+                favourites: {}
             }, { merge: true });
         } catch (error) {
             alert(error.message);

@@ -12,17 +12,27 @@
 
 }
 
-.fa-heart {
+label.fave {
+
     cursor: pointer;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    opacity: 0;
+}
+
+i.fa-heart {
     font-size: 1.8rem;
-    color: var(--mediumred);
+    color: var(--mediumred3);
     margin: 0.4rem;
 }
 
-.fa-solid:hover {
+.fa-heart:hover {
     transform: scale(1.3);
+    color: var(--darkred)
 }
 
-.fa-solid:active {
-    color: var(--mauve);
+.fa-heart:active {
+    color: var(--mediumred2);
 }
