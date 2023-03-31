@@ -11,7 +11,7 @@ const Favourites = () => {
     const dispatch = useDispatch();
     const favourites = useSelector(state => state.user.favourites);
     console.log(favourites);
-    console.log(Object.values(favourites).length);
+    //console.log(Object.values(favourites).length);
 
     const {
         data: countries = [],
@@ -21,25 +21,28 @@ const Favourites = () => {
     } = useGetAllCountriesQuery();;
 
     let countriesList = countries;
+    console.log('original', countries[1]);
+    console.log('copy', countriesList[1])
 
-    /*  if (favourites.length) {
-         console.log(countriesList); console.log(countries[1]);
-         // countriesList = countries.filter(c => favourites.includes(c.name.common))
-         countries.forEach((country) => {
-             for (let i = 0; i < favourites.length; i++) {
-                 if (country.name.common === favourites[i]) {
-                     countriesList.push(country);
+    if (favourites.length) {
+
+        countriesList = countries.filter(c => favourites.includes(c.name.common))
+    }
+    /*      countries.forEach((country) => {
+            for (let i = 0; i < favourites.length; i++) {
+                if (country.name.common === favourites[i]) {
+                    countriesList.push(country);
  
-                 }
-             }
+                }
+            }
  
-         })
-         console.log(countriesList);
-     }
-     else {
-         countriesList = [];
-         console.log(countriesList);
-     } */
+        })
+        console.log(countriesList);
+    }
+    else {
+        countriesList = [];
+        
+    } */
 
 
     return (
@@ -52,17 +55,9 @@ const Favourites = () => {
                     <Row className="mt-5 h-20 row-h-300" xs={1} md={2} lg={3} >
 
                         {
-
-                            /*  countriesList?.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
-                                 <CustomCard country={country} />
-                             </Col>)) */
-                            /*  countries.filter(country => favourites?.includes(country.name.common))
-                                 .map((country) => (<Col key={country.name.common} className="md-3 mt-5">
-                                     <CustomCard country={country} />
-                                 </Col>
-                                 )) */
-
-                        }
+                            countriesList?.map((country) => (<Col key={country.name.common} className="md-3 mt-5">
+                                <CustomCard country={country} />
+                            </Col>))}
                     </Row>
                 </Container>
             )}

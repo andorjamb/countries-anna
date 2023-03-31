@@ -41,16 +41,16 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route path="/" element={<Home />} />
-          <Route path="/countries" element={<Countries />} />
-          <Route path="/countries/:single" element={<CountriesSingle />} />
-          {/* 
-          <Route element={<ProtectedRoute loggedIn={loggedIn} />}> */}
-          <Route path="/favourites" element={<Favourites />} />
-          {/*    </Route> */}
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="/countries" element={<Countries />} />
+            <Route path="/countries/:single" element={<CountriesSingle />} />
+
+            <Route path="/favourites" element={<Favourites />} />
+          </Route>
 
         </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 };
 
