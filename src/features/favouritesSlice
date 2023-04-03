@@ -1,0 +1,47 @@
+import { createApi, fakeBaseQuery, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { db, auth } from '../app/auth/firestore';
+import {
+    collection,
+    getDoc,
+    addDoc,
+    updateDoc,
+    doc,
+    deleteDoc,
+} from "@firebase/firestore";
+
+const user = auth.currentUser;
+console.log('printing from favouritesSlice', user.uid);
+
+export const favouritesApi = createApi({
+    baseQuery: fakeBaseQuery(),
+    tagTypes: ['Favourites'],
+    reducerPath: "favouritesApi",
+    endpoints: (builder) => ({
+        getFavourites: builder.query({
+            queryFn(uid) {
+                try {
+                    const favourites = getDoc(doc(db, 'favourites', uid));
+                    return { data: favourites.data() }
+
+
+                } catch {
+                }
+
+            },
+            providesTags: ['Favourites']
+        }),
+        postFavourites: builder.mutation({
+            async queryFn({ uid, payload }) {
+                await updateDoc(doc(db, 'favourites', uid), { payload }, { merge: true });
+                return { data: null }
+
+            },
+            invalidatesTags: ['Favourites']
+        })
+
+    })
+
+
+})
+
+export const { useGetFavouritesQuery, usePostFavouritesMutation } = favouritesApi;

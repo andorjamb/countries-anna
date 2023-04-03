@@ -4,12 +4,16 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import CustomCard from './CustomCard';
 import { useGetAllCountriesQuery } from '../features/dataSlice';
+import { useGetFavouritesQuery, usePostFavouritesMutation } from '../features/favouritesSlice';
+import { auth } from '../app/auth/firestore'
 import { clearFavourites } from '../features/userSlice';
 import '../customStyles/Favourites.css';
 
 const Favourites = () => {
     const dispatch = useDispatch();
-    const favourites = useSelector(state => state.user.favourites);
+    const user = auth.currentUser;
+    //const favourites = useSelector(state => state.user.favourites);
+    const favourites = useGetFavouritesQuery(user.uid);
     console.log(favourites);
 
 
@@ -19,6 +23,8 @@ const Favourites = () => {
         isFetching,
         error,
     } = useGetAllCountriesQuery();;
+
+    const postData = () => { use }
 
     let countriesList = [];
 
