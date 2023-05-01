@@ -1,27 +1,25 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { Card, ListGroup, ListGroupItem, Row, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-
 
 import { addFavourite, removeFavourite } from '../features/userSlice';
 import '../customStyles/CustomCard.css';
 
-
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
-  const heartIcon = document.getElementById(`fave_${country.name.common}`);
+  const heartIcon = useRef(`fave_${country.name.common}`)
+ // const heartIcon = document.getElementById();
 
   const handleIconClick = (e) => {
-    console.log('clicked')
     heartIcon.classList.toggle('fa-regular');
     heartIcon.classList.toggle('fa-solid');
     if (e.target.checked) {
-      console.log('checked')
+      console.log('checked') //debugging
       dispatch(addFavourite(country.name.common));
     }
     else {
-      console.log('not cheecked');
+      console.log('not checked'); //debugging
       dispatch(removeFavourite(country.name.common))
     }
   }
@@ -36,7 +34,7 @@ const CustomCard = ({ country }) => {
           <Row className="justify-content-between" style={{ justifyContent: 'space-between' }}>
 
             <label className="fave"><input type="checkbox" onClick={handleIconClick} />
-              <div> <i className="fa-heart fa-regular" id={`fave_${country.name.common}`}
+              <div> <i className="fa-heart fa-regular" ref={`fave_${country.name.common}`} id={`fave_${country.name.common}`}
               ></i></div>
 
             </label>
@@ -54,7 +52,6 @@ const CustomCard = ({ country }) => {
             </Card.Link></Row>
 
         </Card.Body>
-
       </Card >
     </>
 

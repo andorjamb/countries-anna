@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     GoogleAuthProvider,
@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import { showLogin, showRegister } from '../features/modalSlice';
-import { auth, db } from '../app/auth/firestore';
+import { auth} from '../app/auth/firestore';
 
 const Login = () => {
 
@@ -49,8 +49,6 @@ const Login = () => {
 
     }
 
-
-
     const handleGoogleSignIn = async () => {
         try {
             await signInWithPopup(auth, provider);
@@ -59,7 +57,6 @@ const Login = () => {
         } catch (err) {
             alert(err.message);
         }
-
     }
 
     return (
@@ -93,8 +90,6 @@ const Login = () => {
                 </Modal.Footer>
             </Modal>
         </div>
-
-
 
     );
 };

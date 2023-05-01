@@ -10,8 +10,6 @@ import '../customStyles/Favourites.css';
 const Favourites = () => {
     const dispatch = useDispatch();
     const favourites = useSelector(state => state.user.favourites);
-    console.log(favourites);
-
 
     const {
         data: countries = [],
@@ -30,9 +28,8 @@ const Favourites = () => {
 
                 }
             }
-
         })
-        console.log(countriesList);
+        console.log(countriesList); //debugging
     }
     else {
         countriesList = [];

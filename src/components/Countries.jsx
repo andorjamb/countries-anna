@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 
-
 import { useGetAllCountriesQuery } from '../features/dataSlice.js';
 import CustomCard from './CustomCard.jsx';
 
 const Countries = () => {
 
   const [search, setSearch] = useState('');
-
-
   const {
     data: countries = [],
     isLoading,
@@ -26,10 +23,8 @@ const Countries = () => {
     console.log({ error });
   }
 
-
   function searchHandler(e) {
     setSearch(e.target.value);
-
   }
 
   return (

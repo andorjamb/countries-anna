@@ -10,7 +10,6 @@ const Home = () => {
 
   const goToCountries = () => {
     navigate('/countries');
-
   }
 
   return (
@@ -45,9 +44,6 @@ const Home = () => {
 
       </Row>
       <Row><div className="sup-div justify-content-center"><p>Sourcecode at <a href="https://github.com/andorjamb/countries-anna" target="_blank" rel="noreferrer"><img src={gitHubMark} style={{ height: '40px' }} alt="github" /></a></p></div></Row>
-
-
-
 
     </Container >
   );
