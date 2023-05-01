@@ -8,12 +8,13 @@ import '../customStyles/CustomCard.css';
 const CustomCard = ({ country }) => {
 
   const dispatch = useDispatch();
-  const heartIcon = useRef(`fave_${country.name.common}`)
+  const heartIcon = useRef();
+
  // const heartIcon = document.getElementById();
 
   const handleIconClick = (e) => {
-    heartIcon.classList.toggle('fa-regular');
-    heartIcon.classList.toggle('fa-solid');
+    heartIcon.current.classList.toggle('fa-regular');
+    heartIcon.current.classList.toggle('fa-solid');
     if (e.target.checked) {
       console.log('checked') //debugging
       dispatch(addFavourite(country.name.common));
@@ -34,7 +35,7 @@ const CustomCard = ({ country }) => {
           <Row className="justify-content-between" style={{ justifyContent: 'space-between' }}>
 
             <label className="fave"><input type="checkbox" onClick={handleIconClick} />
-              <div> <i className="fa-heart fa-regular" ref={`fave_${country.name.common}`} id={`fave_${country.name.common}`}
+              <div> <i className="fa-heart fa-regular" ref={heartIcon} 
               ></i></div>
 
             </label>
